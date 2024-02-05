@@ -12,8 +12,7 @@ import { Route, Routes } from "react-router-dom";
 const App = () => {
  return (
    <div>
-     <Routes>
-     </Routes>
+      <h1>Test</h1>
    </div>
  );
 };
