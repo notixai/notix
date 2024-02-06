@@ -9,7 +9,8 @@ let curID = 1;
 export default function UploadPage(){
     const [tags,setTags] = useState([]);
     const [newTag, setNewTag] = useState('')
-    const [curFile, setCurFile] = useState({});
+    const [curFile, setCurFile] = useState('');
+    const maxFileSize=500000000;
     /**
      * 
      * @param {event} e 
@@ -26,9 +27,38 @@ export default function UploadPage(){
         }
     }
     function handleAddFile(e){
-        setCurFile(e.target.files[0])
+        if(e.target.files)
+        {
+            if(e.target.files[0].size > maxFileSize)
+            {
+                console.log("Error: Too Large!")
+            }
+            else
+            {
+                setCurFile(e.target.files[0])
+            }
+        }
+        
     }
 
+    /**
+     * 
+     * @param {number} size 
+     */
+    function calculateSize(size){
+        let conversions = [{unit: "B", value:1}, {unit:"KB", value:1000}, {unit:"MB", value:1000000}, {unit:"GB", value:1000000000}];
+        let index = 1;
+        for(index; index < conversions.length; index++)
+        {
+            if(size / conversions[index]['value'] < 1)
+            {
+                let suitableConversion = conversions[index-1];
+                return `${(size/suitableConversion['value']).toFixed(2)} ${suitableConversion['unit']}`;
+            } 
+        }
+        let suitableConversion = conversions[index-1];
+        return `${(size/suitableConversion['value']).toFixed(2)} ${suitableConversion['unit']}`;
+    }
     return(
         <>
             <div className="tags-container">
@@ -69,11 +99,11 @@ export default function UploadPage(){
                     required
                 />
                 
-                {curFile &&
+                {curFile !== '' &&
                 (
                     <div className="file-info">
                         <span>Name: {curFile.name}</span>
-                        <span>Size: {curFile.size}</span>
+                        <span>Size: {calculateSize(curFile.size)}</span>
                         <span>Length: {curFile.duration}</span>
                     </div>
                 )}
