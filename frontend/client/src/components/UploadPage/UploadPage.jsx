@@ -16,27 +16,17 @@ let curID = 1;  //generates unique ids for tags
  */
 export default function UploadPage(){
     const [tags,setTags] = useState([]);        //Holds all the tags the user has
-    const [newTag, setNewTag] = useState('')    //Holds the new tag the user wants
-    const [curFile, setCurFile] = useState(''); //Holds the current file selected
+    return(
+        <>
+            {/* Form to upload audio */}
+            <Tags tags={tags} setTags={setTags}/>
+            <AudioForm tags={tags}/>
+        </>
+    )
+}
+function AudioForm({tags}){
     const maxFileSize=500000000;    //Max size for files (roughly 500 MBs)
-    /**
-     * 
-     * @param {event} e 
-     * Takes the input from the label-input and appends it to the other tags
-     */
-    function handleAddTag(e){
-        //If the user pressed enter or left the input box
-        if((e.type === 'keydown' && e.key === 'Enter') || e.type==='blur')
-        {
-            //If the input box isn't empty
-            if(newTag.trim())
-            {
-                setTags([...tags,{id: curID++, tagName:newTag}]);
-                setNewTag('');
-            }        
-        }
-    }
-
+    const [curFile, setCurFile] = useState(null); //Holds the current file selected
     /**
      * 
      * @param {event} e 
@@ -58,33 +48,53 @@ export default function UploadPage(){
             }
         }
     }
-
     /**
      * 
      * @param {event} e 
      * If an audio file has been uploaded, when the user submit the form
      * this function sends the audio file and the tags to the backend
      */
-    async function handleFormSubmit(e){
-        e.preventDefault(); //Stop the form from naturally submitting
-        
-        try{
-            const formData = new FormData();
-            formData.append("audio",curFile);
-            formData.append("tags",tags);
-            console.log(formData);
-            const response = await fetch('http://server:5000/upload-audio', {
-                method: "POST",
-                body: formData
-            })
-            const result = response.json();
-            console.log("Success:", result);
-        } catch (error) {
-            console.error("Failed!");
+        async function handleFormSubmit(e){
+            e.preventDefault(); //Stop the form from naturally submitting
+            
+            try{
+                const formData = new FormData();
+                formData.append("audio",curFile,'audio');
+                formData.append("tags",tags);
+                const response = await fetch('http://localhost:5000/upload-audio', {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                      }
+                })
+                const result = response.json();
+                console.log("Success:", result);
+            } catch (error) {
+                console.error("Failed!");
+            }
+            
         }
-        
-    }
+    return(
+        <form className="form upload-form" method="POST" onSubmit={handleFormSubmit} encType='multipart/form-data'>
+            <label id="audio-upload-label" htmlFor="audio-upload">Upload Audio</label>
+            <input
+                type="file" 
+                id="audio-upload" 
+                name="audio-upload"
+                accept=".mp3,.wav"
+                placeholder="Upload Audio"
+                onChange={handleAddFile}
+                required
+            />
+            {/* If a file is uploaded, show the metadata */}
+            {curFile && <FileData curFile={curFile} />}
+            <input type="submit" value="submit"/>
+        </form>
+    )
+}
 
+function FileData({curFile}){
     /**
      * Converts the size of the file into an equivalent size equivalent with smaller numbers
      * @param {number} size 
@@ -104,14 +114,42 @@ export default function UploadPage(){
                 return `${(size/suitableConversion['value']).toFixed(2)} ${suitableConversion['unit']}`;
             } 
         }
-
         //GBs as fallback if the size is bigger than all the other conversions
         let suitableConversion = conversions[index-1];
         return `${(size/suitableConversion['value']).toFixed(2)} ${suitableConversion['unit']}`;
     }
+
     return(
+        <div className="file-info">
+            <span>Name: {curFile.name}</span>
+            <span>Size: {calculateSize(curFile.size)}</span>
+            <span>Length: {curFile.duration}</span>
+        </div>
+    )
+}
+function Tags({tags, setTags}){
+    const [newTag, setNewTag] = useState('')    //Holds the new tag the user wants
+    /**
+     * 
+     * @param {event} e 
+     * Takes the input from the label-input and appends it to the other tags
+     */
+        function handleAddTag(e){
+            //If the user pressed enter or left the input box
+            if((e.type === 'keydown' && e.key === 'Enter') || e.type==='blur')
+            {
+                //If the input box isn't empty
+                if(newTag.trim())
+                {
+                    setTags([...tags,{id: curID++, tagName:newTag}]);
+                    setNewTag('');
+                }        
+            }
+        }
+        
+    {/* Tags container for AI prompt engineering */}
+    return (
         <>
-            {/* Tags container for AI prompt engineering */}
             <div className="tags-container">
                 {/* List of tags added */}
                 <ul id="tag-list">
@@ -125,8 +163,7 @@ export default function UploadPage(){
                                     &times;
                                 </button>
                             </li>
-                        )
-                        )
+                        ))
                     }
                 </ul>
                 {/* Input box to add new tags */}
@@ -141,29 +178,6 @@ export default function UploadPage(){
                     onChange={ (e) => {setNewTag(e.target.value)}}
                 />
             </div>
-            {/* Form to upload audio */}
-            <form className="form upload-form" method="POST" onSubmit={handleFormSubmit} encType='multipart/form-data'>
-                <label id="audio-upload-label" htmlFor="audio-upload">Upload Audio</label>
-                <input
-                    type="file" 
-                    id="audio-upload" 
-                    name="audio-upload"
-                    accept=".mp3,.wav"
-                    placeholder="Upload Audio"
-                    onChange={handleAddFile}
-                    required
-                />
-                {/* If a file is uploaded, show the metadata */}
-                {curFile !== '' &&
-                (
-                    <div className="file-info">
-                        <span>Name: {curFile.name}</span>
-                        <span>Size: {calculateSize(curFile.size)}</span>
-                        <span>Length: {curFile.duration}</span>
-                    </div>
-                )}
-                <input type="submit" value="submit"/>
-            </form>
         </>
     )
 }
