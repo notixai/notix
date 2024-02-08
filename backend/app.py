@@ -78,7 +78,7 @@ def summarise():
 
       ]
     )
-      res = make_response(completion.choices[0].messages['content'], 200)
+      res = make_response(completion.choices[0].message.content, 200)
       res.mimetype = "text/plain"
   
       return res
