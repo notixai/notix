@@ -1,5 +1,6 @@
 import React from "react";
  
+import UploadPage from './components/UploadPage/UploadPage.jsx'
 // We use Route in order to define the different routes of our application
 import { Route, Routes } from "react-router-dom";
  
@@ -12,7 +13,7 @@ import { Route, Routes } from "react-router-dom";
 const App = () => {
  return (
    <div>
-      <h1>Test</h1>
+      <UploadPage />
    </div>
  );
 };
