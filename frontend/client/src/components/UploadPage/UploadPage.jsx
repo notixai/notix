@@ -6,7 +6,6 @@ let curID = 1;  //generates unique ids for tags
  * @todo Modularize Code into more components
  * @todo Calculate duration of audio file
  * @todo Add HTML sanitization to input
- * @todo Add success and fail to submit
  */
 
 /**
@@ -66,6 +65,9 @@ function AudioForm({tags}){
                     body: formData,
                 })
                 const result = response.json();
+                /**
+                 * @todo Add success and fail to submit
+                 */ 
                 console.log("Success:", result);
             } catch (error) {
                 console.error("Failed!");
