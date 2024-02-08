@@ -1,0 +1,12 @@
+
+
+/* UploadPage specific css */
+#audio-upload{
+    
+    background: transparent;
+}
+
+#audio-upload-label{
+    border:2px dashed black;
+    border-radius:5px;
+}

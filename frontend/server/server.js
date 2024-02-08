@@ -1,5 +1,6 @@
 const express = require("express");
-
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' })
 const app = express();
 
 const cors = require("cors");
@@ -13,6 +14,10 @@ app.use(express.json());
 
 //app.use(require("./routes/record"));
 
+app.post("/upload-audio", upload.single('audio'), (req,res)=> {
+  console.log(req.body);
+  console.log(req.file);
+})
 // Get MongoDB driver connection
 const dbo = require("./db/conn");
  
