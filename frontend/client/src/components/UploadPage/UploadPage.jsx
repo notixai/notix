@@ -3,7 +3,6 @@ let curID = 1;  //generates unique ids for tags
 /**
  * @todo Persist file if user presses cancel
  * @todo Add styling to page
- * @todo Fix handleFormSubmit
  * @todo Modularize Code into more components
  * @todo Calculate duration of audio file
  * @todo Add HTML sanitization to input
@@ -59,14 +58,12 @@ function AudioForm({tags}){
             
             try{
                 const formData = new FormData();
-                formData.append("audio",curFile,'audio');
-                formData.append("tags",tags);
+                formData.append("audio-upload",curFile);
+                const tagNames = tags.map( (tag) => tag.tagName);
+                formData.append("tags",tagNames);
                 const response = await fetch('http://localhost:5000/upload-audio', {
                     method: "POST",
                     body: formData,
-                    headers: {
-                        "Content-Type": "multipart/form-data"
-                      }
                 })
                 const result = response.json();
                 console.log("Success:", result);
@@ -76,7 +73,7 @@ function AudioForm({tags}){
             
         }
     return(
-        <form className="form upload-form" method="POST" onSubmit={handleFormSubmit} encType='multipart/form-data'>
+        <form className="form upload-form" method="POST" onSubmit={handleFormSubmit} enctype='multipart/form-data'>
             <label id="audio-upload-label" htmlFor="audio-upload">Upload Audio</label>
             <input
                 type="file" 
@@ -149,35 +146,33 @@ function Tags({tags, setTags}){
         
     {/* Tags container for AI prompt engineering */}
     return (
-        <>
-            <div className="tags-container">
-                {/* List of tags added */}
-                <ul id="tag-list">
-                    {
-                        tags.map( (tag) => (
-                            <li key={tag.id}>
-                                {tag.tagName}
-                                <button onClick={() => {
-                                    setTags( (curTags) => curTags.filter( (curTag) => tag.id != curTag.id))
-                                }}>
-                                    &times;
-                                </button>
-                            </li>
-                        ))
-                    }
-                </ul>
-                {/* Input box to add new tags */}
-                <input 
-                    id="tag-input"
-                    name="tag-input" 
-                    type="text" 
-                    placeholder="Add Tag" 
-                    value={newTag}
-                    onBlur={handleAddTag} 
-                    onKeyDown={handleAddTag}
-                    onChange={ (e) => {setNewTag(e.target.value)}}
-                />
-            </div>
-        </>
+        <div className="tags-container">
+            {/* List of tags added */}
+            <ul id="tag-list">
+                {
+                    tags.map( (tag) => (
+                        <li key={tag.id}>
+                            {tag.tagName}
+                            <button onClick={() => {
+                                setTags( (curTags) => curTags.filter( (curTag) => tag.id != curTag.id))
+                            }}>
+                                &times;
+                            </button>
+                        </li>
+                    ))
+                }
+            </ul>
+            {/* Input box to add new tags */}
+            <input 
+                id="tag-input"
+                name="tag-input" 
+                type="text" 
+                placeholder="Add Tag" 
+                value={newTag}
+                onBlur={handleAddTag} 
+                onKeyDown={handleAddTag}
+                onChange={ (e) => {setNewTag(e.target.value)}}
+            />
+        </div>
     )
 }
