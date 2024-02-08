@@ -1,4 +1,4 @@
-function NavMenu(){
+export default function NavMenu(){
     return(
         <nav className="nav-menu">
             <div className="navigation classroom-navigation">

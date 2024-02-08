@@ -1,4 +1,4 @@
-function Header(){
+export default function Header(){
     return(
         <header className="notix-header">
             <img src="" alt="" className="notix-logo" />
