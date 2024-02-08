@@ -3,3 +3,4 @@ frontend/db/data
 frontend/server/node_modules
 frontend/client/node_modules
 .devcontainer
+.vscode
