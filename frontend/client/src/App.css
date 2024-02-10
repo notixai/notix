@@ -2,6 +2,8 @@
     font-family: 'Arbutus Slab';
     src: url(fonts/ArbutusSlab-Regular.ttf); 
 }
+
+/* Variables */
 :root{
     --primary-bg: #fefefe;
     --secondary-bg: #eff0ef;
@@ -14,12 +16,18 @@
     --font-color-five:#eff0ef;
 }
 
+/* Defaults */
 *{
     box-sizing:border-box;
+}
+
+html{
+    height:100%;
 }
 body{
     padding:0;
     margin:0;
+    height:100%;
     min-height:100vh;
     min-width:100vw;
     background-color:var(--primary-bg);
@@ -28,6 +36,9 @@ body{
 }
 main{
     padding:20px;
+}
+li{
+    list-style:none;
 }
 #root{
     width:100%;
@@ -38,6 +49,7 @@ main{
     display:grid;
     height:100%;
     width:100%;
+    
 }
 .logged-in-screen{
     grid-template-areas: 
@@ -53,18 +65,35 @@ main{
 
 .nav-menu{
     grid-area:Navigation;
+    background-color:var(--secondary-bg)
 }
 
 .main-content{
     grid-area:Main;
+    justify-self: center;
+    align-self: center;
+    max-width:800px;
+    width:100%;
 }
+
+
+/* Navigation CSS */
+.nav-menu{
+    padding: 10px 30px;
+    /* position:absolute;
+    left:0;
+    top:0;
+    bottom:0; */
+}
+.navigation ol{
+    padding-left:0px;
+}
+/* UploadPage specific css */
 .audio-page-container{
     display:flex;
     gap:5px;
     flex-direction:column;
 }
-/* UploadPage specific css */
-
 
 #audio-upload-label{
     border:2px dashed var(--secondary-theme);
@@ -80,7 +109,7 @@ main{
 .tags-container{
     display:flex;
     flex-direction:column;
-    padding:5px;
+    padding:10px 20px;;
     border-radius:5px;
     background-color:var(--primary-theme);
 }
@@ -99,6 +128,9 @@ main{
     overflow: hidden;
     white-space:nowrap;
     border-radius:5px;
+
+    padding:5px;
+    padding-left:10px;
     color:var(--font-color-four);
     display:flex;
     position:relative;
@@ -109,8 +141,10 @@ main{
     border-radius:5px;
     background-color:var(--primary-bg);
     color:black;
-    padding:3px;
-    padding-left:10px;
+    font-size:1.2rem;
+    padding:5px;
+    padding-left:20px;
+
 }
 
 .remove-tag-button{
