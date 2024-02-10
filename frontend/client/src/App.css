@@ -1,12 +1,118 @@
-
-
-/* UploadPage specific css */
-#audio-upload{
-    
-    background: transparent;
+:root{
+    --primary-bg: #fefefe;
+    --secondary-bg: #eff0ef;
+    --primary-theme: #b99df3;
+    --secondary-theme:#8B5BEA;
+    --primary-accent: #00618B;
+    --secondary-accent: #179DD4;
+    --tertiary-accent: #39AAD9;
+    --font-color-four:#fefefe;
+    --font-color-five:#eff0ef
 }
 
+*{
+    box-sizing:border-box;
+}
+body{
+    padding:0;
+    margin:0;
+    min-height:100vh;
+    min-width:100vw;
+    background-color:var(--primary-bg)
+}
+main{
+    padding:20px;
+}
+#root{
+    width:100%;
+    height:100%;
+}
+
+.main-screen{
+    display:grid;
+    height:100%;
+    width:100%;
+}
+.logged-in-screen{
+    grid-template-areas: 
+        "Header Header"
+        "Navigation Main";
+    grid-template-rows:50px 1fr;
+    grid-template-columns:auto 1fr;
+}
+
+.notix-header{
+    grid-area:Header;
+}
+
+.nav-menu{
+    grid-area:Navigation;
+}
+
+.main-content{
+    grid-area:Main;
+}
+.audio-page-container{
+    display:flex;
+    gap:5px;
+    flex-direction:column;
+}
+/* UploadPage specific css */
+
+
 #audio-upload-label{
-    border:2px dashed black;
+    border:2px dashed var(--secondary-theme);
     border-radius:5px;
+    background-color: var(--secondary-bg);
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: center;
+}
+
+.tags-container{
+    display:flex;
+    flex-direction:column;
+    padding:5px;
+    border-radius:5px;
+    background-color:var(--primary-theme);
+}
+
+#tag-list{
+    padding-left:0;
+    display:flex;
+    gap:5px;
+    flex-wrap:wrap;
+}
+
+.tag{
+    background-color:var(--secondary-theme);
+    width:100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
+    border-radius:5px;
+    color:var(--font-color-four);
+    display:flex;
+    position:relative;
+    
+}
+
+#tag-input{
+    border-radius:5px;
+    background-color:var(--primary-bg);
+    color:black;
+    padding:3px;
+    padding-left:10px;
+}
+
+.remove-tag-button{
+    position:relative;
+    background:transparent;
+    border:0px;
+    height:10px;
+    width:10px;
+    position:absolute;
+    right:0px;
 }
