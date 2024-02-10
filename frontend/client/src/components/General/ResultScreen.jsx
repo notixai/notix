@@ -8,7 +8,7 @@ export default function ResultScreen({title,message,status}){
     return (
         <div className="dialog-box">
             <h2 className="dialog-box-heading">{title}</h2>
-            {status === 'success' ? <img className="success-image" src="" /> : <img className="failure-image" src="" />}
+            {status === 'success' ? <img className="success-image" src="" alt="Success"/> : <img className="failure-image" src="" alt="Failure" />}
             <p className="dialog-box-title">{message}</p>
             <button className="button" onClick={handleReturn}>
                 Go Back
