@@ -1,33 +1,60 @@
-# This file may be used to create an environment using:
-# $ conda create --name <env> --file <this file>
-# platform: win-64
-bzip2=1.0.8=he774522_0
-ca-certificates=2023.12.12=haa95532_0
-certifi=2024.2.2=pypi_0
-charset-normalizer=3.3.2=pypi_0
-click=8.1.7=py312haa95532_0
-colorama=0.4.6=py312haa95532_0
-expat=2.5.0=hd77b12b_0
-flask>=2.2.5=py312haa95532_0
-itsdangerous=2.0.1=pyhd3eb1b0_0
-jinja2>=3.1.3=py312haa95532_0
-libffi=3.4.4=hd77b12b_0
-markupsafe=2.1.1=py312h2bbff1b_0
-openssl=3.0.13=h2bbff1b_0
-pip=23.3.1=py312haa95532_0
-python=3.12.1=h1d929f7_0
-python-dotenv=1.0.1=pypi_0
-requests=2.31.0=pypi_0
-setuptools=68.2.2=py312haa95532_0
-sniffio=1.3.0=pypi_0
-sqlite=3.41.2=h2bbff1b_0
-tk=8.6.12=h2bbff1b_0
-typing-extensions=4.9.0=pypi_0
-tzdata=2023d=h04d1e81_0
-urllib3=2.2.0=pypi_0
-vc=14.2=h21ff451_1
-vs2015_runtime=14.27.29016=h5e58377_2
-werkzeug>=2.3.8=py312haa95532_0
-wheel=0.41.2=py312haa95532_0
-xz=5.4.5=h8cc25b3_0
-zlib=1.2.13=h8cc25b3_0
+annotated-types==0.6.0
+anyio @ file:///C:/b/abs_847uobe7ea/croot/anyio_1706220224037/work
+asgiref==3.7.2
+assemblyai==0.20.2
+Bottleneck @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/bottleneck_1699550558423/work
+cachetools==5.3.2
+certifi @ file:///C:/b/abs_35d7n66oz9/croot/certifi_1707229248467/work/certifi
+chardet @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/chardet_1699498892802/work
+charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
+click @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/click_1699473800648/work
+colorama @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/colorama_1699472650914/work
+distro @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/distro_1701796812765/work
+Flask @ file:///C:/b/abs_efc024w7fv/croot/flask_1702980041157/work
+google-api-core==2.17.0
+google-api-python-client==2.117.0
+google-auth==2.27.0
+google-auth-httplib2==0.2.0
+googleapis-common-protos==1.62.0
+h11 @ file:///C:/b/abs_1czwoyexjf/croot/h11_1706652332846/work
+httpcore @ file:///C:/b/abs_55n7g233bw/croot/httpcore_1706728507241/work
+httplib2==0.22.0
+httpx @ file:///C:/b/abs_70wr6jzznw/croot/httpx_1706887145357/work
+idna @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/idna_1699473483982/work
+itsdangerous @ file:///tmp/build/80754af9/itsdangerous_1621432558163/work
+Jinja2 @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/jinja2_1699476363736/work
+MarkupSafe @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/markupsafe_1699475011847/work
+mkl-fft @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/mkl_fft_1699473528480/work
+mkl-random @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/mkl_random_1699473588250/work
+mkl-service==2.4.0
+numexpr @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/numexpr_1699503421264/work
+numpy @ file:///C:/b/abs_16b2j7ad8n/croot/numpy_and_numpy_base_1704311752418/work/dist/numpy-1.26.3-cp312-cp312-win_amd64.whl#sha256=698ee7d3a0df0d67b6b5196985719e4a06dbaf5d90f3a62cb13950acc4bfb9ec
+oauth2client==4.1.3
+openai @ file:///C:/b/abs_130pqu0rxo/croot/openai_1706892467657/work
+pandas @ file:///C:/b/abs_fej9bi0gew/croot/pandas_1702318041921/work/dist/pandas-2.1.4-cp312-cp312-win_amd64.whl#sha256=acefc815876222beb62d463fc72d52bb2a64d10a8f1efb171fa7195701924319
+pandas-stubs @ file:///C:/b/abs_e0sp1h4xvt/croot/pandas-stubs_1705009933752/work
+protobuf==4.25.2
+pyasn1==0.5.1
+pyasn1-modules==0.3.0
+pydantic @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/pydantic_1699476772487/work
+pydantic_core==2.16.2
+PyDrive==1.3.1
+pyparsing==3.1.1
+python-dateutil @ file:///tmp/build/80754af9/python-dateutil_1626374649649/work
+python-dotenv @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/python-dotenv_1699475097728/work
+pytz @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/pytz_1699475334900/work
+PyYAML==6.0.1
+requests @ file:///C:/b/abs_474vaa3x9e/croot/requests_1707355619957/work
+rsa==4.9
+setuptools==68.2.2
+six @ file:///tmp/build/80754af9/six_1644875935023/work
+sniffio @ file:///C:/b/abs_3akdewudo_/croot/sniffio_1705431337396/work
+tqdm @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/tqdm_1701808178601/work
+types-pytz @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/types-pytz_1699545516418/work
+typing_extensions @ file:///C:/b/abs_23uoivfoy8/croot/typing_extensions_1705619982210/work
+tzdata @ file:///croot/python-tzdata_1690578112552/work
+uritemplate==4.1.1
+urllib3 @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/urllib3_1701808221919/work
+websockets==12.0
+Werkzeug @ file:///C:/b/abs_3901hwqcw0/croot/werkzeug_1706210134718/work
+wheel==0.41.2
