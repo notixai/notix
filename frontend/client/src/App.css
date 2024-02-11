@@ -205,13 +205,13 @@ li {
   flex-direction: column;
   align-items: center;
 }
-.navigation-label {
+/* .navigation-label {
   color: var(--purple-font-300);
-}
+} */
 
 #upload-icon {
   padding-top: 3rem;
-  width: 100px;
+  width: 75px;
 }
 
 #audio-submit {
