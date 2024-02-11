@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const path = require("path");
 
 require("../model")
-const File = mongoose.model("file");
+const Recording = mongoose.model("recording");
 
 
 const storage = multer.diskStorage({
@@ -23,15 +23,12 @@ const upload = multer({
 
 const obj = (req, res) => {
     upload(req, res, () => {
-        // console.log("Request ----", req.body);
-        // console.log("Request file ----", req.file);
-        // console.log("Request file ----", req.body.tags);
-        const file = new File();
-        file.meta_data = req.file;
-        file.tags = req.body.tags.split(",");
-        file.processed = false;
-        file.save().then(()=>{
-        res.send({message: "Upload Successful"})
+        const recording = new Recording();
+        recording.meta_data = req.file;
+        recording.tags = req.body.tags.split(",");
+        recording.processed = false;
+        recording.save().then(()=>{
+        res.send({message: "Recording Upload Successful"})
         })
     })
 }
