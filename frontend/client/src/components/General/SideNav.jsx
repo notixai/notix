@@ -9,6 +9,7 @@ import { ImageList, ImageListItem, Stack } from "@mui/material";
 import "D:/Projects/Code/Notix/notix/frontend/client/src/App.css";
 
 function SideNav() {
+  const [open, setOpen] = React.useState(true);
   const drawerWidth = "175px";
   const buttonStyle = {
     width: "100%",
@@ -20,10 +21,19 @@ function SideNav() {
     textTransform: "capitalize",
   };
 
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Drawer
-      variant="permanent"
+      variant="persistent"
       anchor="left"
+      open={open}
       sx={{
         padding: "10px 30px",
         width: drawerWidth,
@@ -37,10 +47,7 @@ function SideNav() {
       <Stack direction="row" justifyContent="space-between">
         <ListItem sx={{ fontSize: "1.15rem", color: "var(--blue-font-400)" }}>
           <ImageList>
-            <ImageListItem
-              sx={{ width: 30 }}
-              cols={1}
-            >
+            <ImageListItem sx={{ width: 30 }} cols={1}>
               <img src="img/upload-icon.png" alt="" />
             </ImageListItem>
           </ImageList>
@@ -53,6 +60,7 @@ function SideNav() {
             marginRight: "5px",
             color: "var(--white-font-500)",
           }}
+          onClick={handleDrawerClose}
         >
           x
         </Button>
