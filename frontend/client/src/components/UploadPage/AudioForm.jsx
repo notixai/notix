@@ -153,7 +153,7 @@ function FileData({ curFile }) {
   return (
     <>
       <div className="audio-center">
-        <img className="audio-wave" src="img/upload-icon.png" alt="" />
+        <img className="sound-wave-icon" src="img/sound-wave-icon.png" alt="Sound Wave" />
         <span className="file-name">Audio Name: {curFile.name}</span>
       </div>
       <div className="file-metadata">
