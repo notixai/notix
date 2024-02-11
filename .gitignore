@@ -1,6 +1,7 @@
 frontend/notix/node_modules
 frontend/db/data
 frontend/server/node_modules
+frontend/server/uploads
 frontend/client/node_modules
 frontend/server/uploads
 .devcontainer
