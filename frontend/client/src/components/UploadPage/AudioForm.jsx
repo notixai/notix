@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Tooltip from "@mui/material/Tooltip";
+// import Tooltip from "@mui/material/Tooltip";
 
 let curID = 1; //generates unique ids for tags
 /**
@@ -37,7 +37,7 @@ function AudioSubmitArea({ tags }) {
    */
   function handleAddFile(e) {
     //If a file has been uploaded
-    if (e.target.files) {
+    if (e.target.files && e.target.files[0]) {
       //Check to see if the size is below the required size
       if (e.target.files[0].size > maxFileSize) {
         console.log("Error: Too Large!");
@@ -151,11 +151,16 @@ function FileData({ curFile }) {
   }
 
   return (
-    <div className="file-info">
-      <span>Name: {curFile.name}</span>
-      <span>Size: {calculateSize(curFile.size)}</span>
-      <span>Length: {curFile.duration}</span>
-    </div>
+    <>
+      <div className="audio-center">
+        <img className="audio-wave" src="img/upload-icon.png" alt="" />
+        <span className="file-name">Audio Name: {curFile.name}</span>
+      </div>
+      <div className="file-metadata">
+        <span>Size: {calculateSize(curFile.size)}</span>
+        <span>Type: {curFile.type}</span>
+      </div>
+    </>
   );
 }
 function Tags({ tags, setTags }) {
@@ -184,7 +189,7 @@ function Tags({ tags, setTags }) {
       {/* List of tags added */}
       <ul id="tag-list">
         {tags.map((tag) => (
-          <Tooltip title={tag.tagName} placement="top" arrow>
+          // <Tooltip title={tag.tagName} placement="top" arrow>
             <li className="tag" key={tag.id}>
               <span>{tag.tagName}</span>
               <button
@@ -198,7 +203,7 @@ function Tags({ tags, setTags }) {
                 &times;
               </button>
             </li>
-          </Tooltip>
+          // </Tooltip>
         ))}
       </ul>
       {/* Input box to add new tags */}
