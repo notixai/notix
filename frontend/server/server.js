@@ -9,14 +9,21 @@ require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 
 app.use(cors());
-
+app.use(express.urlencoded({extended:true}))
 app.use(express.json());
 
 //app.use(require("./routes/record"));
 
-app.post("/upload-audio", upload.single('audio'), (req,res)=> {
-  console.log(req.body);
-  console.log(req.file);
+app.post("/api/upload-audio", upload.single('audio-upload'),(req,res)=> {
+  try{
+    console.log(req.body)
+    console.log(req.file);
+    res.json(200).end();
+  }catch(err){
+    console.error(err);
+    res.json(500);
+  }
+  
 })
 // Get MongoDB driver connection
 const dbo = require("./db/conn");
