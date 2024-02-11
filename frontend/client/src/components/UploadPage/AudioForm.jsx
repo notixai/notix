@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Tooltip from "@mui/material/Tooltip";
 
 let curID = 1; //generates unique ids for tags
 /**
@@ -183,19 +184,21 @@ function Tags({ tags, setTags }) {
       {/* List of tags added */}
       <ul id="tag-list">
         {tags.map((tag) => (
-          <li className="tag" key={tag.id}>
-            {tag.tagName}
-            <button
-              className="button remove-tag-button"
-              onClick={() => {
-                setTags((curTags) =>
-                  curTags.filter((curTag) => tag.id != curTag.id)
-                );
-              }}
-            >
-              &times;
-            </button>
-          </li>
+          <Tooltip title={tag.tagName} placement="top" arrow>
+            <li className="tag" key={tag.id}>
+              <span>{tag.tagName}</span>
+              <button
+                className="button remove-tag-button"
+                onClick={() => {
+                  setTags((curTags) =>
+                    curTags.filter((curTag) => tag.id != curTag.id)
+                  );
+                }}
+              >
+                &times;
+              </button>
+            </li>
+          </Tooltip>
         ))}
       </ul>
       {/* Input box to add new tags */}

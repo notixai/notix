@@ -22,7 +22,7 @@
   --white-font-500: #a7a7a7;
   --purple-font-100: #d0bff3;
   --purple-font-200: #b99df3;
-  --purple-font-300: #9274CB;
+  --purple-font-300: #9274cb;
   --purple-font-400: #5c3385;
   --purple-font-500: #340069;
   --blue-font-100: #ace3fa;
@@ -135,18 +135,21 @@ li {
 }
 
 .tag {
-  background-color: var(--secondary-theme);
   width: 100px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
   border-radius: 5px;
-
+  
   padding: 5px;
   padding-left: 10px;
+  background-color: var(--secondary-theme);
   color: var(--white-font-200);
-  display: flex;
-  position: relative;
+}
+
+.tag span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #tag-input {
@@ -159,25 +162,22 @@ li {
   padding-left: 20px;
 }
 
-#tag-input:focus {
-    border: 1px solid var(--secondary-theme);
-}
-
 .remove-tag-button {
-  position: relative;
+  /* position: relative; */
   background: transparent;
   border: 0px;
   height: 10px;
   width: 10px;
-  position: absolute;
-  right: 10px;
+  padding-right: 10px;
+  /* position: absolute;
+  right: 10px; */
   color: white;
   font-size: 1.2rem;
   font-weight: 300;
 }
 
 .remove-tag-button:hover {
- cursor: pointer;
+  cursor: pointer;
 }
 
 #audio-upload-size {
@@ -189,30 +189,30 @@ li {
 }
 
 #audio-upload-heading {
-    color: var(--purple-font-500);
+  color: var(--purple-font-500);
 }
 
 .navigation-label {
-    color: var(--purple-font-300)
+  color: var(--purple-font-300);
 }
 
 #upload-icon {
-    padding-top: 3rem;
-    width: 100px;
+  padding-top: 3rem;
+  width: 100px;
 }
 
 #audio-submit {
-    background-color: #8b5bea;
-    color: var(--white-font-100);
-    padding: 5px 20px;
-    margin-top: 5px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    font-family: "Arbutus Slab";
+  background-color: #8b5bea;
+  color: var(--white-font-100);
+  padding: 5px 20px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-family: "Arbutus Slab";
 }
 
 .submit-container {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
