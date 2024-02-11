@@ -6,10 +6,11 @@ import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { ImageList, ImageListItem, Stack } from "@mui/material";
-import "D:/Projects/Code/Notix/notix/frontend/client/src/App.css";
+import { useDrawer } from "../Contexts/DrawerContext";
+import "../../../src/App.css";
 
 function SideNav() {
-  const [open, setOpen] = React.useState(true);
+  const { open, toggleDrawer } = useDrawer();
   const drawerWidth = "175px";
   const buttonStyle = {
     width: "100%",
@@ -19,14 +20,6 @@ function SideNav() {
     textTransform: "lowercase",
     // eslint-disable-next-line no-dupe-keys
     textTransform: "capitalize",
-  };
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
   };
 
   return (
@@ -60,7 +53,7 @@ function SideNav() {
             marginRight: "5px",
             color: "var(--white-font-500)",
           }}
-          onClick={handleDrawerClose}
+          onClick={toggleDrawer}
         >
           x
         </Button>
