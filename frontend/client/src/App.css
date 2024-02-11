@@ -112,13 +112,17 @@ li {
   border: 2px dashed var(--secondary-theme);
   border-radius: 5px;
   background-color: var(--secondary-bg);
+
   width: 100%;
+  min-height:300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-
+#audio-upload-label:hover{
+  cursor:pointer;
+}
 .tags-container {
   display: flex;
   flex-direction: column;
@@ -135,7 +139,7 @@ li {
 }
 
 .tag {
-  width: 100px;
+  width: 150px;
   display: flex;
   justify-content: space-between;
   border-radius: 5px;
@@ -192,6 +196,15 @@ li {
   color: var(--purple-font-500);
 }
 
+.audio-wave{
+  width:100px;
+}
+.audio-center{
+  margin:auto;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
 .navigation-label {
   color: var(--purple-font-300);
 }
@@ -212,7 +225,29 @@ li {
   font-family: "Arbutus Slab";
 }
 
+#audio-submit:hover{
+  cursor:pointer;
+}
+
+.file-info{
+  display:flex;
+  flex-direction: column;
+  justify-content:flex-end;
+}
+.file-name{
+  color:var(--blue-font-300);
+  font-size:1.2rem;
+  text-align: center;
+}
+.file-metadata{
+  color:var(--white-font-500);
+  width:100%;
+  display:flex;
+  justify-content: space-between;
+  padding:5px 20px;
+}
 .submit-container {
   display: flex;
   justify-content: flex-end;
 }
+
