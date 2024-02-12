@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from "react";
 const DrawerContext = createContext();
 
 export const DrawerProvider = ({ children }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const toggleDrawer = () => {
     setOpen((prevOpen) => !prevOpen);
