@@ -5,6 +5,7 @@ import openai, os, requests, time
 load_dotenv()
 
 app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 1000 * 1024 * 1024
 
 headers = {
   'authorization': os.environ['ASSEMBLYAI_API_KEY'],
