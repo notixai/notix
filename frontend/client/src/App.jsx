@@ -35,11 +35,11 @@ const App = () => {
         },
         {
           path:"success",
-          element: <ResultScreen status="success" title="Success" message="Successfully Submitted"/>
+          element: <ResultScreen/>
         },
         {
           path:"failure",
-          element: <ResultScreen status="failure" title="Error" message="Something Happened to Your Submission"/>
+          element: <ResultScreen/>
         }
       ]
     }

@@ -4,10 +4,9 @@ import Tooltip from "@mui/material/Tooltip";
 
 let curID = 1; //generates unique ids for tags
 /**
- * @todo Persist file if user presses cancel
+ * @todo add message to select file
  * @todo Add styling to page
  * @todo Modularize Code into more components
- * @todo Calculate duration of audio file
  * @todo Add HTML sanitization to input
  */
 
@@ -55,25 +54,39 @@ function AudioSubmitArea({ tags }) {
   async function handleFormSubmit(e) {
     e.preventDefault(); //Stop the form from naturally submitting
 
+    //If a file has not been selected
+    if(curFile === null)
+    {
+      return;
+    }
+    
     try {
       const formData = new FormData();
       formData.append("audio-upload", curFile);
       const tagNames = tags.map((tag) => tag.tagName);
       formData.append("tags", tagNames);
-      const response = await fetch("http://localhost:5000/api/upload-audio", {
+      const response = await fetch("http://localhost:5000/upload-audio", {
         method: "POST",
         body: formData,
       });
-      const result = await response.json();
+
       /**
        * @todo Add success and fail to submit
        */
-      if (result === 200) navigate("/success");
-      else navigate("/failure");
-
-      console.log("Success:", result);
+      console.log(response);
+      const result = await response.json();
+      if(response.status === 200)
+      {
+        console.log(result);
+        navigate("/success", {state: { title: "Success", status: "success", message: result.message}});
+      }
+      else
+      {
+        navigate("/failure", {state: { title: "Failure", status: "failure", message: result.message}});
+      }
     } catch (error) {
       console.error("Failed!");
+      navigate("/failure", {state: {title: "Failure", status:"failure", message: error}});
     }
   }
   return (
@@ -106,7 +119,6 @@ function AudioSubmitArea({ tags }) {
         accept=".mp3,.wav"
         placeholder="Upload Audio"
         onChange={handleAddFile}
-        required
         hidden
       />
       {/* If a file is uploaded, show the metadata */}
@@ -181,9 +193,7 @@ function Tags({ tags, setTags }) {
     }
   }
 
-  {
-    /* Tags container for AI prompt engineering */
-  }
+  /* Tags container for AI prompt engineering */
   return (
     <div className="tags-container">
       {/* List of tags added */}
