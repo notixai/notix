@@ -29,7 +29,12 @@ const classroomSchema = new mongoose.Schema({
     course_name: String,
     course_code: String,
     // lecturer: User;
-    classes: [clasroomSchema],
+    // classes: [
+    //     {
+    //         type: mongoose.ObjectId,
+    //         ref: 'class'
+    //     }
+    // ],
     // participates: [User],
     start_date: Date,
     end_date: Date
