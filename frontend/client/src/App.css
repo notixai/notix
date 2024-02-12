@@ -67,20 +67,20 @@ li {
 }
 .logged-in-screen {
   grid-template-areas:
-    "Header Header"
-    "Navigation Main";
+    "Header"
+    "Main";
   grid-template-rows: 50px 1fr;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr;
 }
 
 .notix-header {
   grid-area: Header;
 }
 
-.nav-menu {
+/* .nav-menu {
   grid-area: Navigation;
   background-color: var(--secondary-bg);
-}
+} */
 
 .main-content {
   grid-area: Main;
