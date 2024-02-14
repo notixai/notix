@@ -65,7 +65,7 @@ function AudioSubmitArea({ tags }) {
       formData.append("audio-upload", curFile);
       const tagNames = tags.map((tag) => tag.tagName);
       formData.append("tags", tagNames);
-      const response = await fetch("http://localhost:5000/upload-audio", {
+      const response = await fetch("http://localhost:5000/upload-files", {
         method: "POST",
         body: formData,
       });
