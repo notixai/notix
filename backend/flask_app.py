@@ -74,24 +74,24 @@ def transcript():
 @app.route('/summarise', methods=['POST'])
 def summarise():
   try:
-      openai.api_key = os.environ('OPENAI_API_KEY')
 
-      completion = openai.ChatCompletion.create(
-      model="gpt-3.5-turbo",
-      messages=[
+    openai.api_key = os.environ['OPENAI_API_KEY']
+
+
+    completion = openai.chat.completions.create(
+    model="gpt-3.5-turbo",
+    messages=[
 
             # TODO:  Add meeting minutes
-          {"role": "user", "content":  """I will input the transcript for a YouTube video discussing ChatGPT. Correct any errors you may find in the transcript. Provide a bullet point summary of these notes as a good student would for their class.
+          {"role": "user", "content":  """I will input the transcript for a YouTube video discussing ChatGPT. Provide a bullet point summary of these notes as a good student would for their class.
           Here's the transcript: {}
-        """.format(request.body)},
+        """.format(request.data.decode('utf-8'))},
 
       ]
-    )
-      res = make_response(completion.choices[0].message.content, 200)
-      res.mimetype = "text/plain"
-  
-      return res
-  
+        )
+
+    return jsonify({"Summary": completion.choices[0].message.content}), 200
+
   except Exception as error:
     return jsonify({"Summarisation error": error}), 500
 
