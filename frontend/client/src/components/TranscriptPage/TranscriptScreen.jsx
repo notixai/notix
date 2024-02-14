@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import { DialogActions,TextField,Dialog, DialogTitle } from '@mui/material';
+import { TextField,Dialog, DialogTitle } from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 
 const endpoint = `http://localhost:5000/transcripts`;
@@ -13,6 +13,7 @@ export default function TranscriptScreen(){
         async function getTranscriptRecords() {
             try{
                 const response = await fetch(endpoint);
+                //Success
                 if(response.status === 200)
                 {
                     const results = await response.json();
@@ -36,13 +37,15 @@ export default function TranscriptScreen(){
 
 /**
  * 
- * @param {*} param0 
- * @returns 
+ * @param {Object} record - The record that holds a transcription
+ * @param {string} record.audioName - Contains name of audio
+ * @param {string} raw_transcription - Contains the original transcription provided by the service
  */
 
 // TODO: Make Dialog Boox a nicer to look at
 // TODO: Give transcripts items a nicer look
 // TODO: Verifiy returns for post
+// TODO: Remove Transcript from record list
 function TranscriptRecord({record}){
     const {audioName, raw_transcription} = record;
     const [open,setOpen] = useState(false);
