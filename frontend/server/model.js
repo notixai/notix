@@ -5,17 +5,18 @@ var mongoose = require('mongoose');
 // });
 
 const recordingSchema = new mongoose.Schema({
-    // class_id: String,
+    class_id: String,
     // recorder: User,
     tags: [],
     meta_data: {},
     processed: Boolean,
     uploaded: { type: Date, default: Date.now }
 });
-mongoose.model("recording", recordingSchema);
+mongoose.model("recordings", recordingSchema);
 
 const classSchema = new mongoose.Schema({
     // TODO: Move Tags to Class Object, so that Tags can be assigned to a class and not indivdual recording form the class
+    class_id: String,
     class_datetime: Date,
     raw_transcription: String,
     editted_transcription: String,
@@ -23,7 +24,7 @@ const classSchema = new mongoose.Schema({
     recorders: {}
     // recorders consist of recorders User ID and 
 });
-mongoose.model("class", classSchema);
+mongoose.model("classes", classSchema);
 
 const classroomSchema = new mongoose.Schema({
     course_name: String,
