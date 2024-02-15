@@ -1,8 +1,6 @@
 import {useState, useEffect} from 'react';
 import {Dialog, DialogTitle } from '@mui/material';
-import {useNavigate} from 'react-router-dom';
-// import { EditorProvider, useCurrentEditor } from '@tiptap/react';
-// import StarterKit from '@tiptap/starter-kit'
+import {useNavigate, useLocation} from 'react-router-dom';
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 const endpoint = `http://localhost:5000/summaries`;
@@ -56,21 +54,51 @@ export default function SummaryScreen(){
             }
             
         </>
-       
-        
     )
 }
 
-
-function SummaryRecord({record}){
-    const {summary,className} = record;
-    const [open,setOpen] = useState(false);
-    const [editable, setEditable] = useState(false);
+// Add loader for this so the data is pulled while the page is loading?
+export function StudentSummary(){
+    const {summary, className} = useLocation().state; //If loader we replace this?
+    
     const editor = useEditor({
         extensions: [
             StarterKit,
         ],
-        editable,
+        editable: true,
+        "type": "doc",
+        content: summary,
+    })
+
+    function handleSave(){
+        const json = editor.getJSON();
+        // Check if this is new document or a save as, if it is then it is a save as
+        // add handleSaveAs
+        // Add post to save
+    }
+    function handleSaveAs(){
+
+    }
+
+    return(
+        <div className="editor-window">
+            <h1>{className}</h1>
+            <button onClick={handleSave}>Save</button>
+            <Editor editor={editor}/>
+        </div>
+    )
+}
+
+function SummaryRecord({record}){
+    const {summary,className} = record;
+    const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
+    const editor = useEditor({
+        extensions: [
+            StarterKit,
+        ],
+        editable: false,
+        "type": "doc",
         content: summary,
     })
 
@@ -80,10 +108,17 @@ function SummaryRecord({record}){
     function handleOpen(){
         setOpen(true);
     }
-    function handleEdit(){
-        editor.setEditable(!editable);
-        setEditable( (lastState) => !lastState);
+
+    /**
+     * @todo Consider if getCopy posts to server and then navigates without passing state
+     */
+    function handleGetCopy(){
+        const summaryJSON = editor.getJSON();
+        // Navigate with state maybeeee temporary
+        //  Thinking of whether 
+        navigate('/notebook',{state: { summary: summaryJSON, className: className}})
     }
+
     return (
         <div>
             <div className="transcript-record" onClick={handleOpen}>
@@ -98,7 +133,7 @@ function SummaryRecord({record}){
                 sx={{p:15}}
                 className="transcript-pop-up"
             >
-                <button onClick={handleEdit}>{editable=== true ? 'Stop Editing' : 'Edit'}</button>
+                <button onClick={handleGetCopy}>Get Copy</button>
                 <button onClick={handleClose}>x</button>
                 <DialogTitle>Summary View</DialogTitle>
                 <Editor editor={editor}/>

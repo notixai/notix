@@ -13,7 +13,7 @@ import AudioForm from './components/UploadPage/AudioForm.jsx'
 import UserScreen from './components/General/UserScreen.jsx'
 import Home from './components/General/Home.jsx'
 import ResultScreen from './components/General/ResultScreen.jsx'
-import SummaryScreen from './components/SummaryPage/SummaryScreen.jsx'
+import SummaryScreen, {StudentSummary} from './components/SummaryPage/SummaryScreen.jsx'
 
 /**
  * 
@@ -37,15 +37,18 @@ const App = () => {
         {
           path:"summaries",
           element: <SummaryScreen />
-        }
-        ,
+        },
         {
           path:"success",
           element: <ResultScreen/>
         },
         {
           path:"failure",
-          element: <ResultScreen/>
+          element: <ResultScreen />
+        },
+        {
+          path:"notebook",
+          element: <StudentSummary />
         }
       ]
     }
