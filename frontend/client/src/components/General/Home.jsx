@@ -4,6 +4,7 @@ export default function Home(){
         <>
             <h1>Welcome</h1>
             <Link to={'upload-audio'}>Upload Page</Link>
+            <Link to={'summaries'}>See Summaries</Link>
         </>
         
     )
