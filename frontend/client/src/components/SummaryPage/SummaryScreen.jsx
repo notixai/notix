@@ -14,6 +14,7 @@ const Editor = ({editor}) => {
 // TODO: Complete useEffect to pull Records
 // TODO: Give Summary Record proper key (based on payload)
 export default function SummaryScreen(){
+    //Records to be taken
     const [records,setRecords] = useState([
             {
                 className:"TestTestTest",
@@ -27,6 +28,7 @@ export default function SummaryScreen(){
 
         ]);
 
+    //Grab the records from the server
     useEffect(() => {
         async function getSummaryRecords() {
             try{
@@ -61,6 +63,7 @@ export default function SummaryScreen(){
 export function StudentSummary(){
     const {summary, className} = useLocation().state; //If loader we replace this?
     
+    //Defines an editor to be used on the page
     const editor = useEditor({
         extensions: [
             StarterKit,
@@ -89,10 +92,12 @@ export function StudentSummary(){
     )
 }
 
+//Original Summary pulled from the database (not student copy)
 function SummaryRecord({record}){
     const {summary,className} = record;
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false); //To open and close dialog box
     const navigate = useNavigate();
+    //Editor to give read only view to these documents
     const editor = useEditor({
         extensions: [
             StarterKit,

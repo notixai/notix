@@ -21,6 +21,7 @@ import SummaryScreen, {StudentSummary} from './components/SummaryPage/SummaryScr
  * @todo create proper routing system
  */
 const App = () => {
+  //Browser routes to lead to different pages
   const router = createBrowserRouter([
     {
       path:"/",
