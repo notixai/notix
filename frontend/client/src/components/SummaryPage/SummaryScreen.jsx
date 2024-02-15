@@ -65,12 +65,12 @@ export default function SummaryScreen(){
 function SummaryRecord({record}){
     const {summary,className} = record;
     const [open,setOpen] = useState(false);
-
+    const [editable, setEditable] = useState(false);
     const editor = useEditor({
         extensions: [
             StarterKit,
         ],
-        editable: true,
+        editable,
         content: summary,
     })
 
@@ -80,12 +80,16 @@ function SummaryRecord({record}){
     function handleOpen(){
         setOpen(true);
     }
-
+    function handleEdit(){
+        editor.setEditable(!editable);
+        setEditable( (lastState) => !lastState);
+    }
     return (
         <div>
             <div className="transcript-record" onClick={handleOpen}>
                 <h2 className="transcript-audio-name">{className}</h2>
             </div>
+            
             <Dialog 
                 open={open} 
                 onClose={handleClose}
@@ -94,6 +98,8 @@ function SummaryRecord({record}){
                 sx={{p:15}}
                 className="transcript-pop-up"
             >
+                <button onClick={handleEdit}>{editable=== true ? 'Stop Editing' : 'Edit'}</button>
+                <button onClick={handleClose}>x</button>
                 <DialogTitle>Summary View</DialogTitle>
                 <Editor editor={editor}/>
             </Dialog>
