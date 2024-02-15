@@ -76,21 +76,24 @@ def summarise():
   try:
 
     openai.api_key = os.environ['OPENAI_API_KEY']
+    request_data = request.get_json()
 
-
+    
     completion = openai.chat.completions.create(
-    model="gpt-3.5-turbo",
+    model="gpt-3.5-turbo-0125",
     messages=[
 
             # TODO:  Add meeting minutes
-          {"role": "user", "content":  """I will input the transcript for a YouTube video discussing ChatGPT. Provide a bullet point summary of these notes as a good student would for their class.
-          Here's the transcript: {}
-        """.format(request.data.decode('utf-8'))},
+          {"role": "user", "content":  f"I will input the transcript for a lecture on {request_data['topics']} and you will provide a summary with headings, subheadings, bullet points, key notes etc. of this lecture as a good student would for their class. Use html to achieve this and ensure that all notes created are only from content in the transcript itself.Here is the transcript: {request_data['transcript']}"},
 
       ]
         )
 
-    return jsonify({"Summary": completion.choices[0].message.content}), 200
+    answer = completion.choices[0].message.content
+
+    clean_answer = answer.replace("\n", "")
+
+    return jsonify({"Summary": clean_answer}), 200
 
   except Exception as error:
     return jsonify({"Summarisation error": error}), 500
