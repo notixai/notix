@@ -29,4 +29,5 @@ RUN usermod -aG docker vscode
 
 # install Docker tools (cli, buildx, compose)
 COPY --from=gloursdocker/docker / /
-CMD [ "npm", "start" ]
+# CMD [ "npm", "start" ]
+CMD [ "bash" ]
