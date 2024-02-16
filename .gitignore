@@ -3,6 +3,8 @@ frontend/db/data
 frontend/server/node_modules
 frontend/server/uploads
 frontend/client/node_modules
+backend/.env
 frontend/server/uploads
 .devcontainer
 .vscode
+backend/.env
