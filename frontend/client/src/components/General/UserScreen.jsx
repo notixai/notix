@@ -1,6 +1,5 @@
 import {Outlet} from 'react-router-dom';
 import Header from './Header.jsx'
-import NavMenu from './NavMenu.jsx'
 import {useNavigation} from 'react-router-dom'
 import SideNav from './SideNav.jsx'
 
