@@ -10,7 +10,6 @@ export default function UserScreen(){
             {navigation.state === "loading" && <h2>Waiting</h2>}
             <Header />
             <SideNav />
-            {/* <NavMenu /> */}
             <main className="main-content">
                 <Outlet />
             </main>

@@ -61,20 +61,23 @@ function AudioSubmitArea({ tags }) {
     }
     
     try {
+      //Create FormData Object and add files and tags to it to post
       const formData = new FormData();
       formData.append("audio-upload", curFile);
       const tagNames = tags.map((tag) => tag.tagName);
       formData.append("tags", tagNames);
+
+      //Post FormData
       const response = await fetch("http://localhost:5000/upload-audio", {
         method: "POST",
         body: formData,
       });
-
       /**
        * @todo Add success and fail to submit
        */
       console.log(response);
       const result = await response.json();
+      //Send message based on if it was successful or not
       if(response.status === 200)
       {
         console.log(result);
@@ -86,7 +89,7 @@ function AudioSubmitArea({ tags }) {
       }
     } catch (error) {
       console.error("Failed!");
-      navigate("/failure", {state: {title: "Failure", status:"failure", message: error}});
+      navigate("/failure", {state: {title: "Failure", status:"failure", message: error.message}});
     }
   }
   return (
