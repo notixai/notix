@@ -15,18 +15,7 @@ const Editor = ({editor}) => {
 // TODO: Give Summary Record proper key (based on payload)
 export default function SummaryScreen(){
     //Records to be taken
-    const [records,setRecords] = useState([
-            {
-                className:"TestTestTest",
-                summary:"m Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scramble"
-            },
-            {
-                className:"Wow",
-                summary:"m Ipsum sapdmsapmdsakdkmsakdksaldmsakdlaskmdklas ak dmsla;dm ;lsamd; slamdl;asm l;dasm;ld mas;dma s;ldm;sa md;la;dl mas;dis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scramble"
-            }
-            
-
-        ]);
+    const [records,setRecords] = useState([]);
 
     //Grab the records from the server
     useEffect(() => {
@@ -43,6 +32,7 @@ export default function SummaryScreen(){
                 console.error("There was an issue getting the summaries");
             }
         }
+        getSummaryRecords();
     },[]);
 
     return (
@@ -51,7 +41,7 @@ export default function SummaryScreen(){
             {records.length === 0 ?
                 <h2>No Summaries</h2> :
                 <ol className="summary-list">
-                    {records.map( (record,i) => <li key={i}><SummaryRecord record={record}/></li>)}
+                    {records.map( (record) => <li key={record.classID}><SummaryRecord record={record}/></li>)}
                 </ol>
             }
             
@@ -61,7 +51,7 @@ export default function SummaryScreen(){
 
 // Add loader for this so the data is pulled while the page is loading?
 export function StudentSummary(){
-    const {summary, className} = useLocation().state; //If loader we replace this?
+    const {summary, classID} = useLocation().state; //If loader we replace this?
     
     //Defines an editor to be used on the page
     const editor = useEditor({
@@ -85,7 +75,7 @@ export function StudentSummary(){
 
     return(
         <div className="editor-window">
-            <h1>{className}</h1>
+            <h1>{classID}</h1>
             <button onClick={handleSave}>Save</button>
             <Editor editor={editor}/>
         </div>
@@ -94,7 +84,7 @@ export function StudentSummary(){
 
 //Original Summary pulled from the database (not student copy)
 function SummaryRecord({record}){
-    const {summary,className} = record;
+    const {summary,classID} = record;
     const [open, setOpen] = useState(false); //To open and close dialog box
     const navigate = useNavigate();
     //Editor to give read only view to these documents
@@ -121,13 +111,13 @@ function SummaryRecord({record}){
         const summaryJSON = editor.getJSON();
         // Navigate with state maybeeee temporary
         //  Thinking of whether 
-        navigate('/notebook',{state: { summary: summaryJSON, className: className}})
+        navigate('/notebook',{state: { summary: summaryJSON, classID: classID}})
     }
 
     return (
         <div>
-            <div className="transcript-record" onClick={handleOpen}>
-                <h2 className="transcript-audio-name">{className}</h2>
+            <div className="summary-record" onClick={handleOpen}>
+                <h2 className="summary-audio-name">{classID}</h2>
             </div>
             
             <Dialog 
@@ -136,7 +126,7 @@ function SummaryRecord({record}){
                 fullWidth={true}
                 maxWidth="lg"
                 sx={{p:15}}
-                className="transcript-pop-up"
+                className="summary-pop-up"
             >
                 <button onClick={handleGetCopy}>Get Copy</button>
                 <button onClick={handleClose}>x</button>
