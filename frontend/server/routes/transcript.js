@@ -14,21 +14,21 @@ transcriptRoutes.route('/transcripts').get(async (req, res) => {
     const results = []
     notix_classes.forEach(n_class => {
         results.push({
-            classId: n_class.class_id,
+            classID: n_class.class_id,
             raw_transcription: n_class.raw_transcription
         });
     });
     res.send({raw_transcriptions: results})
 });
 
-transcriptRoutes.route("/transcripts/:classRoomId/:classId").get(async (req, res) => {
+transcriptRoutes.route("/transcripts/:classRoomId/:classID").get(async (req, res) => {
     // TODO: Classroom ID currently not used as Classroom fucntionality has not been 
     // implemented yet.
 
-    const notix_class = await Class.findOne({class_id: req.params.classId});
+    const notix_class = await Class.findOne({class_id: req.params.classID});
     res.send(
         {
-            classId: notix_class.class_id,
+            classID: notix_class.class_id,
             raw_transcription: notix_class.raw_transcription
         }
     );

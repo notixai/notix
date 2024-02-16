@@ -13,6 +13,7 @@ import AudioForm from './components/UploadPage/AudioForm.jsx'
 import UserScreen from './components/General/UserScreen.jsx'
 import Home from './components/General/Home.jsx'
 import ResultScreen from './components/General/ResultScreen.jsx'
+import TranscriptScreen from './components/TranscriptPage/TranscriptScreen.jsx'
 
 /**
  * 
@@ -40,6 +41,10 @@ const App = () => {
         {
           path:"failure",
           element: <ResultScreen/>
+        },
+        {
+          path:"transcripts",
+          element: <TranscriptScreen />
         }
       ]
     }

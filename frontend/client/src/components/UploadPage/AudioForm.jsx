@@ -69,7 +69,6 @@ function AudioSubmitArea({ tags }) {
         method: "POST",
         body: formData,
       });
-
       /**
        * @todo Add success and fail to submit
        */
@@ -86,7 +85,7 @@ function AudioSubmitArea({ tags }) {
       }
     } catch (error) {
       console.error("Failed!");
-      navigate("/failure", {state: {title: "Failure", status:"failure", message: error}});
+      navigate("/failure", {state: {title: "Failure", status:"failure", message: error.message}});
     }
   }
   return (
