@@ -34,14 +34,17 @@ transcriptRoutes.route("/transcripts/:classRoomId/:classID").get(async (req, res
     );
 });
 
-transcriptRoutes.route("/transcript").post(async (req, res) => {
+transcriptRoutes.route("/transcripts").post(async (req, res) => {
     // Add Editted Transcript to Class Document 
     await Class.findOneAndUpdate({class_id: req.body.classID}, {editted_transcription: req.body.editted_transcript });
     
     const notix_class = await Class.findOne({class_id: req.body.classID});
-    const data = {topics: notix_class.tags, transcript: req.body.editted_transcript};
-    
-    let summary = await axios.post('http:/ai:12009/summarise', data)
+
+    const data = {
+        topics: notix_class.tags, 
+        transcript: req.body.editted_transcription
+    };
+    let summary = await axios.post('http://ai:12009/summarise', data)
         .then((response) => {
             return response.data.Summary;
         })
