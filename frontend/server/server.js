@@ -12,6 +12,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use(require("./routes/upload"));
+
+app.use(require("./routes/summaries"));
  
 app.listen(port, () => {
   mongoose.connect("mongodb://db:27017/notix",{}).then(()=>{
