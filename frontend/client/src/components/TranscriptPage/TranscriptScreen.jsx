@@ -67,18 +67,25 @@ function TranscriptRecord({record}){
 
     async function handleSendTranscript(e){
         try{
-            const formData = new FormData();
-            formData.append("editted_transcription",editedTranscript);
-            formData.append("classID",classID);
-            const response = await fetch('http://localhost:5000/transcripts', {
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            const raw = JSON.stringify({
+                "classID": classID,
+                "editted_transcription": editedTranscript
+            });
+
+            const requestOptions = {
                 method: "POST",
-                "Content-Type": "application/x-www-form-urlencoded",
-                body: formData
-            })
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
 
+            const response = await fetch("http://localhost:5000/transcripts", requestOptions)
+
+            console.log(response);
             const result = await response.json();
-
-            //Success
             if(response.status === 201)
                 navigate("/success", {state: { title: "Success", status: "success", message: result.message}});
             else

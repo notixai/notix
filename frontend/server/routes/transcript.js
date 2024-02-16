@@ -44,6 +44,9 @@ transcriptRoutes.route("/transcripts").post(async (req, res) => {
         topics: notix_class.tags, 
         transcript: req.body.editted_transcription
     };
+    
+    res.status(201).send({message:"Successfully Sent to be Summarized"});
+
     let summary = await axios.post('http://ai:12009/summarise', data)
         .then((response) => {
             return response.data.Summary;
@@ -52,9 +55,7 @@ transcriptRoutes.route("/transcripts").post(async (req, res) => {
             console.log(error);
             return null;
         });
-    
     await Class.findOneAndUpdate({class_id: req.body.classID}, {summary: summary});
-
 });
 
 module.exports = transcriptRoutes;
