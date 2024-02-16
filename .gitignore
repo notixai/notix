@@ -7,3 +7,4 @@ backend/.env
 frontend/server/uploads
 .devcontainer
 .vscode
+backend/.env

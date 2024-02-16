@@ -1,0 +1,47 @@
+version: '3.1'
+services:
+  frontend:
+    container_name: react
+    build:
+      context: ./client
+      target: dev-envs
+    ports:
+      - 3000:3000
+    stdin_open: true
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: always
+    depends_on:
+      - server
+
+  server:
+    container_name: express
+    restart: always
+    build:
+      context: ./server
+      target: dev-envs
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - db
+    ports: 
+      - 5000:5000
+  db:
+    restart: "unless-stopped"
+    image: mongo:5.0.24
+    container_name: mongodb
+    volumes:
+      - ./db/data:/data/db
+    ports:
+      - 27017:27017
+  ai:
+    container_name: flask_api
+    restart: always
+    build:
+      context: ../backend
+    volumes:
+      - ../backend:/app
+    ports:
+      - 12009:12009
