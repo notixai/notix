@@ -40,17 +40,17 @@ export default function SummaryScreen(){
                     setRecords(results);
                 }
             } catch (e){
-                console.error("There was an issue getting the transcripts");
+                console.error("There was an issue getting the summaries");
             }
         }
     },[]);
 
     return (
         <>
-            <h1 className="transcript-page-heading">Transcripts</h1>
+            <h1 className="summary-page-heading">Summaries</h1>
             {records.length === 0 ?
-                <h2>No Transcriptions</h2> :
-                <ol className="transcript-list">
+                <h2>No Summaries</h2> :
+                <ol className="summary-list">
                     {records.map( (record,i) => <li key={i}><SummaryRecord record={record}/></li>)}
                 </ol>
             }
