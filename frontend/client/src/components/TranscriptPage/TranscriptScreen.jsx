@@ -7,18 +7,7 @@ const endpoint = `http://localhost:5000/transcripts`;
 // TODO: Complete useEffect to pull Records
 // TODO: Give Transcript Record proper key (based on payload)
 export default function TranscriptScreen(){
-    const [records,setRecords] = useState([
-            {
-                audioName:"TestTestTest",
-                raw_transcription:"m Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scramble"
-            },
-            {
-                audioName:"Wow",
-                raw_transcription:"m Ipsum sapdmsapmdsakdkmsakdksaldmsakdlaskmdklas ak dmsla;dm ;lsamd; slamdl;asm l;dasm;ld mas;dma s;ldm;sa md;la;dl mas;dis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scramble"
-            }
-            
-
-        ]);
+    const [records,setRecords] = useState([]);
 
     useEffect(() => {
         async function getTranscriptRecords() {
@@ -27,22 +16,23 @@ export default function TranscriptScreen(){
                 //Success
                 if(response.status === 200)
                 {
-                    const results = await response.json();
+                    const json = await response.json();
+                    const results = json.raw_transcriptions;
                     setRecords(results);
                 }
             } catch (e){
                 console.error("There was an issue getting the transcripts");
             }
         }
+        getTranscriptRecords();
     },[]);
-
     return (
         <>
             <h1 className="transcript-page-heading">Transcripts</h1>
             {records.length === 0 ?
                 <h2>No Transcriptions</h2> :
                 <ol className="transcript-list">
-                    {records.map( (record,i) => <li key={i}><TranscriptRecord record={record}/></li>)}
+                    {records.map( (record) => <li key={record.classID}><TranscriptRecord record={record}/></li>)}
                 </ol>
             }
         </>
@@ -54,7 +44,7 @@ export default function TranscriptScreen(){
 /**
  * 
  * @param {Object} record - The record that holds a transcription
- * @param {string} record.audioName - Contains name of audio
+ * @param {string} record.classID- Contains the classID
  * @param {string} raw_transcription - Contains the original transcription provided by the service
  */
 
@@ -63,7 +53,7 @@ export default function TranscriptScreen(){
 // TODO: Verifiy returns for post
 // TODO: Remove Transcript from record list
 function TranscriptRecord({record}){
-    const {audioName, raw_transcription} = record;
+    const {classID, raw_transcription} = record;
     const [open,setOpen] = useState(false);
     const [editedTranscript, setEditedTranscript] = useState(raw_transcription);
     const navigate = useNavigate();
@@ -78,7 +68,8 @@ function TranscriptRecord({record}){
     async function handleSendTranscript(e){
         try{
             const formData = new FormData();
-            formData.append("Edited_Transcription",editedTranscript);
+            formData.append("editted_transcription",editedTranscript);
+            formData.append("classID",classID);
             const response = await fetch('http://localhost:5000/transcripts', {
                 method: "POST",
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -95,7 +86,7 @@ function TranscriptRecord({record}){
                 
         } catch(error){
             console.error("Error");
-            navigate("/failure", {state: {title: "Failure", status:"failure", message: error}});
+            navigate("/failure", {state: {title: "Failure", status:"failure", message: error.message}});
         }
     }
 
@@ -105,7 +96,7 @@ function TranscriptRecord({record}){
     return (
         <div>
             <div className="transcript-record" onClick={handleOpen}>
-                <h2 className="transcript-audio-name">{audioName}</h2>
+                <h2 className="transcript-audio-name">{classID}</h2>
             </div>
             <Dialog 
                 open={open} 

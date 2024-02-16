@@ -6,4 +6,4 @@ RUN pip install --upgrade pip --break-system-packages
 WORKDIR /app
 COPY . /app
 RUN pip --no-cache-dir install -r requirements.txt --break-system-packages
-CMD ["python3", "app.py"]
+CMD ["python3", "flask_app.py"]

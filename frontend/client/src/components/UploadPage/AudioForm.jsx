@@ -65,11 +65,10 @@ function AudioSubmitArea({ tags }) {
       formData.append("audio-upload", curFile);
       const tagNames = tags.map((tag) => tag.tagName);
       formData.append("tags", tagNames);
-      const response = await fetch("http://localhost:5000/upload-files", {
+      const response = await fetch("http://localhost:5000/upload-audio", {
         method: "POST",
         body: formData,
       });
-
       /**
        * @todo Add success and fail to submit
        */
@@ -86,7 +85,7 @@ function AudioSubmitArea({ tags }) {
       }
     } catch (error) {
       console.error("Failed!");
-      navigate("/failure", {state: {title: "Failure", status:"failure", message: error}});
+      navigate("/failure", {state: {title: "Failure", status:"failure", message: error.message}});
     }
   }
   return (
