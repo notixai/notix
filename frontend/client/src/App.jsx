@@ -14,6 +14,7 @@ import UserScreen from './components/General/UserScreen.jsx'
 import Home from './components/General/Home.jsx'
 import ResultScreen from './components/General/ResultScreen.jsx'
 import SummaryScreen, {StudentSummary} from './components/SummaryPage/SummaryScreen.jsx'
+import TranscriptScreen from './components/TranscriptPage/TranscriptScreen.jsx'
 
 /**
  * 
@@ -50,6 +51,10 @@ const App = () => {
         {
           path:"notebook",
           element: <StudentSummary />
+        },
+        {
+          path:"transcripts",
+          element: <TranscriptScreen />
         }
       ]
     }
