@@ -36,3 +36,12 @@ services:
       - ./db/data:/data/db
     ports:
       - 27017:27017
+  ai:
+    container_name: flask_api
+    restart: always
+    build:
+      context: ../backend
+    volumes:
+      - ../backend:/app
+    ports:
+      - 12008:12009
