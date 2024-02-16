@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 const recordingSchema = new mongoose.Schema({
     class_id: String,
     // recorder: User,
-    tags: [],
+    // tags: [],
     meta_data: {},
     processed: Boolean,
     uploaded: { type: Date, default: Date.now }
@@ -17,12 +17,13 @@ mongoose.model("recordings", recordingSchema);
 const classSchema = new mongoose.Schema({
     // TODO: Move Tags to Class Object, so that Tags can be assigned to a class and not indivdual recording form the class
     class_id: String,
+    tags: [],
     class_datetime: Date,
     raw_transcription: String,
     editted_transcription: String,
     summary: String,
     recorders: {}
-    // recorders consist of recorders User ID and 
+    // recorders will contain a subdocument of recordingSchema
 });
 mongoose.model("classes", classSchema);
 

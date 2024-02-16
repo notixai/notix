@@ -27,12 +27,12 @@ const obj = (req, res) => {
         let temp_id = Date.now()
         const n_class = new Class();
         n_class.class_id = temp_id;
+        n_class.tags = req.body.tags.split(",");
         n_class.save()
 
         const recording = new Recording();
         recording.class_id = temp_id;
         recording.meta_data = req.file;
-        recording.tags = req.body.tags.split(",");
         recording.processed = false;
         recording.save().then(()=>{
         res.send({message: "Recording Upload Successful"})
