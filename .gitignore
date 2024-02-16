@@ -6,3 +6,4 @@ frontend/client/node_modules
 frontend/server/uploads
 .devcontainer
 .vscode
+backend/.env
