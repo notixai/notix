@@ -11,7 +11,7 @@ summariesRoutes.route('/summaries').get(async (req, res) => {
     notix_classes.forEach(n_class => {
         if (n_class.summary !== undefined){
             results.push({
-                classId: n_class.class_id,
+                classID: n_class.class_id,
                 summary: n_class.summary
             });
         }
@@ -19,13 +19,13 @@ summariesRoutes.route('/summaries').get(async (req, res) => {
     res.send({summaries: results})
 });
 
-summariesRoutes.route("/summaries/:classRoomId/:classId").get(async (req, res) => {
+summariesRoutes.route("/summaries/:classRoomId/:classID").get(async (req, res) => {
     // TODO: Classroom ID currently not used as Classroom fucntionality has not been implemented yet.
-    const notix_class = await Class.findOne({class_id: req.params.classId});
+    const notix_class = await Class.findOne({class_id: req.params.classID});
     console.log(notix_class);
     res.send(
         {
-            classId: notix_class.class_id,
+            classID: notix_class.class_id,
             summary: notix_class.summary
         }
     );

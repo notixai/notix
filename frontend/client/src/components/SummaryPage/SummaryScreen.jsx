@@ -12,7 +12,6 @@ const Editor = ({editor}) => {
 }
 
 // TODO: Complete useEffect to pull Records
-// TODO: Give Summary Record proper key (based on payload)
 export default function SummaryScreen(){
     //Records to be taken
     const [records,setRecords] = useState([]);
@@ -26,7 +25,7 @@ export default function SummaryScreen(){
                 if(response.status === 200)
                 {
                     const results = await response.json();
-                    setRecords(results);
+                    setRecords(results.summaries);
                 }
             } catch (e){
                 console.error("There was an issue getting the summaries");
@@ -34,7 +33,7 @@ export default function SummaryScreen(){
         }
         getSummaryRecords();
     },[]);
-
+    console.log(records)
     return (
         <>
             <h1 className="summary-page-heading">Summaries</h1>
@@ -44,7 +43,6 @@ export default function SummaryScreen(){
                     {records.map( (record) => <li key={record.classID}><SummaryRecord record={record}/></li>)}
                 </ol>
             }
-            
         </>
     )
 }
@@ -63,12 +61,15 @@ export function StudentSummary(){
         content: summary,
     })
 
+    //TODO: Do save once there are classrooms
     function handleSave(){
         const json = editor.getJSON();
         // Check if this is new document or a save as, if it is then it is a save as
         // add handleSaveAs
         // Add post to save
     }
+
+    // TODO: Once Users have Classrooms
     function handleSaveAs(){
 
     }
