@@ -29,6 +29,6 @@ To run the react server:
 4. If there are no issues, you can now access the react frontend on localhost:3000
 ### Transcribing videos
 Currently, videos are not automatically transcribed. To transcribe, do the following:
-1. Go to the express contain
+1. Go to the express container
 2. Go to exec tab
 3. Type "node transcribe_worker.js" to start the transcription process
