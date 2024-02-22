@@ -32,3 +32,8 @@ Currently, videos are not automatically transcribed. To transcribe, do the follo
 1. Go to the express container
 2. Go to exec tab
 3. Type "node transcribe_worker.js" to start the transcription process
+### Checking errors/logs
+Containers have their own logs section to check errors, output, etc. To utilize this:
+1. Click the container
+2. Go to logs
+NOTE: There are other tabs like Files and bind mounds that can be examined
