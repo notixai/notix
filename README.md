@@ -39,3 +39,12 @@ Containers have their own logs section to check errors, output, etc. To utilize 
 1. Click the container
 2. Go to logs
 NOTE: There are other tabs like Files and bind mounds that can be examined
+
+#Contributors
+- tg1702
+- aquonbovell
+- PeripheralSheep
+- JonathanKing78
+- BrandenSpooner
+- IsaiahSama
+- TaigaTi
