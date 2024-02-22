@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use(require("./routes/upload"));
+app.use(require("./routes/summaries"));
 app.use(require("./routes/transcript"));
  
 app.listen(port, () => {
