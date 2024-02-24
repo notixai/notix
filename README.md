@@ -40,7 +40,7 @@ Containers have their own logs section to check errors, output, etc. To utilize 
 2. Go to logs
 NOTE: There are other tabs like Files and bind mounds that can be examined
 
-#Contributors
+# Contributors
 - tg1702
 - aquonbovell
 - PeripheralSheep
