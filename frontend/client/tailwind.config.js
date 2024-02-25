@@ -37,21 +37,27 @@ module.exports = {
       'tertiary-accent': '#39aad9',
 
       /* Fonts */
-      'white-font-100': '#ffffff',
-      'white-font-200': '#fefefe',
-      'white-font-300': '#eff0ef',
-      'white-font-400': '#d4d4d4',
-      'white-font-500': ' #a7a7a7',
-      'purple-font-100': '#d0bff3',
-      'purple-font-200': '#b99df3',
-      'purple-font-300': '#9274cb',
-      'purple-font-400': '#5c3385',
-      'purple-font-500': '#340069',
-      'blue-font-100': '#ace3fa',
-      'blue-font-200': '#81d0f1',
-      'blue-font-200': '#39aad9',
-      'blue-font-300': '#179dd4',
-      'blue-font-400': '#00628b',
+      'white-font': {
+        100: '#ffffff',
+        200: '#fefefe',
+        300: '#eff0ef',
+        400: '#d4d4d4',
+        500: ' #a7a7a7',
+      },
+      'purple-font': {
+        100: '#d0bff3',
+        200: '#b99df3',
+        300: '#9274cb',
+        400: '#5c3385',
+        500: '#340069',
+      },
+      'blue-font': {
+        100: '#ace3fa',
+        200: '#81d0f1',
+        200: '#39aad9',
+        300: '#179dd4',
+        400: '#00628b',
+      }
     },
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],
