@@ -1,3 +1,6 @@
+const autoprefixer = require("autoprefixer");
+const postcss = require("postcss");
+
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
@@ -74,4 +77,5 @@ module.exports = {
       },
     },
   },
+  plugins: [autoprefixer(), postcss()],
 };
