@@ -3,323 +3,166 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Arbutus Slab";
-  src: url(fonts/ArbutusSlab-Regular.ttf);
+	font-family: "Arbutus Slab";
+	src: url(fonts/ArbutusSlab-Regular.ttf);
 }
 
 /* Variables */
 :root {
-  /* Main Theme */
-  --primary-bg: #fefefe;
-  --secondary-bg: #eff0ef;
-  --primary-theme: #b99df3;
-  --secondary-theme: #8b5bea;
-  --primary-accent: #00618b;
-  --secondary-accent: #179dd4;
-  --tertiary-accent: #39aad9;
+	/* Main Theme */
+	--primary-bg: #fefefe;
+	--secondary-bg: #eff0ef;
+	--primary-theme: #b99df3;
+	--secondary-theme: #8b5bea;
+	--primary-accent: #00618b;
+	--secondary-accent: #179dd4;
+	--tertiary-accent: #39aad9;
 
-  /* Fonts */
-  --white-font-100: #ffffff;
-  --white-font-200: #fefefe;
-  --white-font-300: #eff0ef;
-  --white-font-400: #d4d4d4;
-  --white-font-500: #a7a7a7;
-  --purple-font-100: #d0bff3;
-  --purple-font-200: #b99df3;
-  --purple-font-300: #9274cb;
-  --purple-font-400: #5c3385;
-  --purple-font-500: #340069;
-  --blue-font-100: #ace3fa;
-  --blue-font-200: #81d0f1;
-  --blue-font-200: #39aad9;
-  --blue-font-300: #179dd4;
-  --blue-font-400: #00628b;
+	/* Fonts */
+	--white-font-100: #ffffff;
+	--white-font-200: #fefefe;
+	--white-font-300: #eff0ef;
+	--white-font-400: #d4d4d4;
+	--white-font-500: #a7a7a7;
+	--purple-font-100: #d0bff3;
+	--purple-font-200: #b99df3;
+	--purple-font-300: #9274cb;
+	--purple-font-400: #5c3385;
+	--purple-font-500: #340069;
+	--blue-font-100: #ace3fa;
+	--blue-font-200: #81d0f1;
+	--blue-font-200: #39aad9;
+	--blue-font-300: #179dd4;
+	--blue-font-400: #00628b;
 }
 
 /* Defaults */
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html {
-  height: 100%;
+	height: 100%;
 }
 body {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  min-height: 100vh;
-  min-width: 100vw;
-  background-color: var(--primary-bg);
-  font-family: "Arbutus Slab";
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	min-height: 100vh;
+	min-width: 100vw;
+	background-color: var(--primary-bg);
+	font-family: "Arbutus Slab";
 }
-h1{
-  text-align: center;
+h1 {
+	text-align: center;
 }
-h2{
-  text-align:center;
+h2 {
+	text-align: center;
 }
 main {
-  padding: 20px;
+	padding: 20px;
 }
 /* li{
   list-style: none;
 } */
 #root {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
-.links{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  align-items: center;
+.links {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
 }
 .main-screen {
-  display: grid;
-  height: 100%;
-  width: 100%;
+	display: grid;
+	height: 100%;
+	width: 100%;
 }
 .logged-in-screen {
-  grid-template-areas:
-    "Header"
-    "Main";
-  grid-template-rows: 50px 1fr;
-  grid-template-columns: 1fr;
+	grid-template-areas:
+		"Header"
+		"Main";
+	grid-template-rows: 50px 1fr;
+	grid-template-columns: 1fr;
 }
 
 .notix-header {
-  grid-area: Header;
+	grid-area: Header;
 }
 
-/* .nav-menu {
-  grid-area: Navigation;
-  background-color: var(--secondary-bg);
-} */
-
 .main-content {
-  grid-area: Main;
-  justify-self: center;
-  align-self: center;
-  max-width: 800px;
-  width: 100%;
+	grid-area: Main;
+	justify-self: center;
+	align-self: center;
+	max-width: 800px;
+	width: 100%;
 }
 
 /* Navigation CSS */
 .nav-menu {
-  padding: 10px 30px;
-  /* position:absolute;
+	padding: 10px 30px;
+	/* position:absolute;
     left:0;
     top:0;
     bottom:0; */
 }
 .navigation ol {
-  padding-left: 0px;
-}
-/* UploadPage specific css */
-.audio-page-container {
-  display: flex;
-  gap: 5px;
-  flex-direction: column;
-}
-
-#audio-upload-label {
-  border: 2px dashed var(--secondary-theme);
-  border-radius: 5px;
-  background-color: var(--secondary-bg);
-
-  width: 100%;
-  min-height: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-#audio-upload-label:hover {
-  cursor: pointer;
-}
-.tags-container {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 20px;
-  border-radius: 5px;
-  background-color: var(--primary-theme);
-}
-
-#tag-list {
-  padding-left: 0;
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-}
-
-.tag {
-  width: 150px;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 5px;
-
-  padding: 5px;
-  padding-left: 10px;
-  background-color: var(--secondary-theme);
-  color: var(--white-font-200);
-}
-
-.tag span {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-#tag-input {
-  border-radius: 5px;
-  border: 1px solid var(--secondary-theme);
-  background-color: var(--primary-bg);
-  color: black;
-  font-size: 1.2rem;
-  padding: 5px;
-  padding-left: 20px;
-}
-
-.remove-tag-button {
-  /* position: relative; */
-  background: transparent;
-  border: 0px;
-  height: 10px;
-  width: 10px;
-  padding-right: 10px;
-  /* position: absolute;
-  right: 10px; */
-  color: white;
-  font-size: 1.2rem;
-  font-weight: 300;
-}
-
-.remove-tag-button:hover {
-  cursor: pointer;
-}
-
-#audio-upload-size {
-  color: var(--blue-font-300);
-}
-
-#audio-upload-type {
-  color: var(--purple-font-400);
-}
-
-#audio-upload-heading {
-  color: var(--purple-font-500);
-}
-
-.sound-wave-icon {
-  width: 60%;
-}
-.audio-center {
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-/* .navigation-label {
-  color: var(--purple-font-300);
-} */
-
-#upload-icon {
-  padding-top: 3rem;
-  width: 75px;
-}
-
-#audio-submit {
-  background-color: #8b5bea;
-  color: var(--white-font-100);
-  padding: 5px 20px;
-  margin-top: 5px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  font-family: "Arbutus Slab";
-}
-
-#audio-submit:hover {
-  cursor: pointer;
-}
-
-.file-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.file-name {
-  margin-top: 5px;
-  color: var(--blue-font-300);
-  font-size: 1.2rem;
-  text-align: center;
-}
-
-.file-metadata {
-  color: var(--white-font-500);
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 20px;
-}
-.submit-container {
-  display: flex;
-  justify-content: flex-end;
+	padding-left: 0px;
 }
 
 /* Transcript Record */
 
-.transcript-list{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+.transcript-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
-.transcript-pop-up{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+.transcript-pop-up {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
-.transcript-record{
-  border:2px solid black;
-  border-radius:5px;
-  text-align: center;
-}
-
-.transcript-record:hover{
-  cursor:pointer;
-}
-.close-button{
-  position:absolute;
-  top:10px;
-  right:10px;
-  font-size:18px;
-}
-.transcript-audio-name{
-  text-overflow:ellipsis;
-  text-wrap:nowrap;
-  overflow: hidden;
-  padding-left:10px;
-  padding-right:10px;
+.transcript-record {
+	border: 2px solid black;
+	border-radius: 5px;
+	text-align: center;
 }
 
-.buttons-container{
-  display:flex;
-  justify-content: center;
-  gap:20px;
+.transcript-record:hover {
+	cursor: pointer;
+}
+.close-button {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 18px;
+}
+.transcript-audio-name {
+	text-overflow: ellipsis;
+	text-wrap: nowrap;
+	overflow: hidden;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
-.button{
-  background: transparent;
-  border:none;
+.buttons-container {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
 }
 
-.button:hover{
-  cursor:pointer;
+.button {
+	background: transparent;
+	border: none;
 }
-.buttons-container .button{
-  border:1px solid black;
-  border-radius:2px;
-  margin:10px 0px;
+
+.button:hover {
+	cursor: pointer;
+}
+.buttons-container .button {
+	border: 1px solid black;
+	border-radius: 2px;
+	margin: 10px 0px;
 }
