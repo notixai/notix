@@ -30,37 +30,40 @@ function SideNav({ container }) {
 			<Dialog.Trigger>
 				<img className="w-8" src="img/menu-icon.png" />
 			</Dialog.Trigger>
-			<Dialog.Portal container={container}>
-				<AnimatePresence>
-					<motion.div
-						initial={{ width: 0, opacity: 0 }}
-						animate={{ width: "150px", opacity: 1 }}
-						exit={{ width: 0, opacity: 0 }}
-						transition={{
-							delay: 0.15,
-							duration: 2,
-						}}
-					>
-						<Dialog.Content
-							onInteractOutside={(event) =>
-								event.preventDefault()
+			<AnimatePresence>
+				{open && (
+					<Dialog.Portal container={container} forceMount>
+						<motion.div
+							initial={{ width: 0, opacity: 0 }}
+							animate={{ width: "150px", opacity: 1 }}
+							exit={{ width: 0, opacity: 0 }}
+							transition={
+								{
+									// delay:
+								}
 							}
-							className="z-10 h-screen w-full overflow-hidden text-ellipsis bg-primary-theme"
 						>
-							<nav className="flex flex-col gap-4">
-								<Dialog.Title>Notix</Dialog.Title>
-								<Dialog.Close>
-									<button className="hover:cursor-pointer">
-										<Cross1Icon />
-									</button>
-								</Dialog.Close>
+							<Dialog.Content
+								onInteractOutside={(event) =>
+									event.preventDefault()
+								}
+								className="z-10 h-screen w-full overflow-hidden text-ellipsis bg-primary-theme"
+							>
+								<nav className="flex flex-col gap-4">
+									<Dialog.Title>Notix</Dialog.Title>
+									<Dialog.Close>
+										<button className="hover:cursor-pointer">
+											<Cross1Icon />
+										</button>
+									</Dialog.Close>
 
-								<SideNavLinks navOptions={navOptions} />
-							</nav>
-						</Dialog.Content>
-					</motion.div>
-				</AnimatePresence>
-			</Dialog.Portal>
+									<SideNavLinks navOptions={navOptions} />
+								</nav>
+							</Dialog.Content>
+						</motion.div>
+					</Dialog.Portal>
+				)}
+			</AnimatePresence>
 		</Dialog.Root>
 	);
 }
