@@ -18,11 +18,21 @@ function SideNav({ container }) {
 	const navOptions = [
 		{
 			heading: "Classes",
-			links: ["Class 1", "Class 2", "Class 3"],
+			links: [
+				{ link: "Class 1", id: 1 },
+				{ link: "Class 2", id: 2 },
+				{ link: "Class 3", id: 3 },
+			],
+			id: 1,
 		},
 		{
 			heading: "Notebook",
-			links: ["Notebook 1", "Notebook 2", "Notebook 3"],
+			links: [
+				{ link: "Notebook 1", id: 1 },
+				{ link: "Notebook 2", id: 2 },
+				{ link: "Notebook 3", id: 3 },
+			],
+			id: 2,
 		},
 	];
 	return (
@@ -37,11 +47,6 @@ function SideNav({ container }) {
 							initial={{ width: 0, opacity: 0 }}
 							animate={{ width: "150px", opacity: 1 }}
 							exit={{ width: 0, opacity: 0 }}
-							transition={
-								{
-									// delay:
-								}
-							}
 						>
 							<Dialog.Content
 								onInteractOutside={(event) =>
@@ -51,10 +56,8 @@ function SideNav({ container }) {
 							>
 								<nav className="flex flex-col gap-4 overflow-hidden whitespace-nowrap">
 									<Dialog.Title>Notix</Dialog.Title>
-									<Dialog.Close>
-										<button className="hover:cursor-pointer">
-											<Cross1Icon />
-										</button>
+									<Dialog.Close className="hover:cursor-pointer">
+										<Cross1Icon />
 									</Dialog.Close>
 									<SideNavLinks navOptions={navOptions} />
 								</nav>
@@ -69,11 +72,11 @@ function SideNav({ container }) {
 function SideNavLinks({ navOptions }) {
 	return navOptions.map((option) => {
 		return (
-			<div>
+			<div key={option.id}>
 				<h2 className="text-left text-xl">{option.heading}</h2>
 				<ol className="pl-1">
 					{option.links.map((link) => (
-						<li>{link}</li>
+						<li key={link.id}>{link["link"]}</li>
 					))}
 				</ol>
 			</div>
