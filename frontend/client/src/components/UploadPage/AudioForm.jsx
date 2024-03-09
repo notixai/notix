@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Form } from "react-router-dom";
 
 export default function AudioForm({ tags }) {
 	const maxFileSize = 500000000; //Max size for files (roughly 500 MBs)
@@ -74,10 +74,11 @@ export default function AudioForm({ tags }) {
 		}
 	}
 	return (
-		<form
+		<Form
 			className="form upload-form"
 			method="POST"
 			onSubmit={handleFormSubmit}
+			navigate={false}
 			encType="multipart/form-data"
 		>
 			<label
@@ -100,14 +101,14 @@ export default function AudioForm({ tags }) {
 				hidden
 			/>
 			{/* If a file is uploaded, show the metadata */}
-			<div className="flex justify-end">
+			<div className="flex justify-center sm:justify-end">
 				<input
 					className="mt-2 rounded bg-secondary-theme px-4 py-1 text-white-font-100 hover:cursor-pointer"
 					type="submit"
 					value="Submit"
 				/>
 			</div>
-		</form>
+		</Form>
 	);
 }
 function FileData({ curFile }) {

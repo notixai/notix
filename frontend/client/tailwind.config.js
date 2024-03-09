@@ -75,6 +75,9 @@ module.exports = {
       borderRadius: {
         '4xl': '2rem',
       },
+      gridTemplateRows: {
+        'layout': 'auto minmax(0, 1fr)',
+      }
     },
   },
   plugins: [autoprefixer(), postcss()],

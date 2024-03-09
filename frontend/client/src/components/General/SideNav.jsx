@@ -1,127 +1,196 @@
 import React from "react";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-import { ImageList, ImageListItem, Stack } from "@mui/material";
-import { useDrawer } from "../Contexts/DrawerContext";
-import "../../../src/App.css";
+// import Drawer from "@mui/material/Drawer";
+// import List from "@mui/material/List";
+// import ListItem from "@mui/material/ListItem";
+// import ListItemText from "@mui/material/ListItemText";
+// import Paper from "@mui/material/Paper";
+// import Button from "@mui/material/Button";
+// import { ImageList, ImageListItem, Stack } from "@mui/material";
+// import { useDrawer } from "../Contexts/DrawerContext";
+// import "../../../src/App.css";
 
-function SideNav() {
-  const { open, toggleDrawer } = useDrawer();
-  const drawerWidth = "175px";
-  const buttonStyle = {
-    width: "100%",
-    color: "black",
-    textAlign: "start",
-    padding: "2px 10px",
-    textTransform: "lowercase",
-    // eslint-disable-next-line no-dupe-keys
-    textTransform: "capitalize",
-  };
+import * as Dialog from "@radix-ui/react-dialog";
+import { Cross1Icon } from "@radix-ui/react-icons";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+function SideNav({ container }) {
+	const [open, setOpen] = useState(false);
+	const navOptions = [
+		{
+			heading: "Classes",
+			links: ["Class 1", "Class 2", "Class 3"],
+		},
+		{
+			heading: "Notebook",
+			links: ["Notebook 1", "Notebook 2", "Notebook 3"],
+		},
+	];
+	return (
+		<Dialog.Root open={open} onOpenChange={setOpen} modal={false}>
+			<Dialog.Trigger>
+				<img className="w-8" src="img/menu-icon.png" />
+			</Dialog.Trigger>
+			<Dialog.Portal container={container}>
+				<AnimatePresence>
+					<motion.div
+						initial={{ width: 0, opacity: 0 }}
+						animate={{ width: "150px", opacity: 1 }}
+						exit={{ width: 0, opacity: 0 }}
+						transition={{
+							delay: 0.15,
+							duration: 2,
+						}}
+					>
+						<Dialog.Content
+							onInteractOutside={(event) =>
+								event.preventDefault()
+							}
+							className="z-10 h-screen w-full overflow-hidden text-ellipsis bg-primary-theme"
+						>
+							<nav className="flex flex-col gap-4">
+								<Dialog.Title>Notix</Dialog.Title>
+								<Dialog.Close>
+									<button className="hover:cursor-pointer">
+										<Cross1Icon />
+									</button>
+								</Dialog.Close>
 
-  return (
-    <Drawer
-      variant="persistent"
-      anchor="left"
-      open={open}
-      sx={{
-        padding: "10px 30px",
-        width: drawerWidth,
-        "& .MuiDrawer-paper": {
-          width: drawerWidth,
-          backgroundColor: "var(--secondary-bg)",
-        },
-      }}
-    >
-      <Paper></Paper>
-      <Stack direction="row" justifyContent="space-between">
-        <ListItem sx={{ fontSize: "1.15rem", color: "var(--blue-font-400)" }}>
-          <ImageList>
-            <ImageListItem sx={{ width: 30 }} cols={1}>
-              <img src="img/upload-icon.png" alt="" />
-            </ImageListItem>
-          </ImageList>
-          Notix
-        </ListItem>
-        <Button
-          sx={{
-            fontSize: "1rem",
-            textAlign: "end",
-            marginRight: "5px",
-            color: "var(--white-font-500)",
-          }}
-          onClick={toggleDrawer}
-        >
-          x
-        </Button>
-      </Stack>
+								<SideNavLinks navOptions={navOptions} />
+							</nav>
+						</Dialog.Content>
+					</motion.div>
+				</AnimatePresence>
+			</Dialog.Portal>
+		</Dialog.Root>
+	);
+}
+function SideNavLinks({ navOptions }) {
+	return navOptions.map((option) => {
+		return (
+			<div>
+				<h2 className="text-left text-xl">{option.heading}</h2>
+				<ol className="pl-1">
+					{option.links.map((link) => (
+						<li>{link}</li>
+					))}
+				</ol>
+			</div>
+		);
+	});
+}
+function SideNav2() {
+	const { open, toggleDrawer } = useDrawer();
+	const drawerWidth = "175px";
+	const buttonStyle = {
+		width: "100%",
+		color: "black",
+		textAlign: "start",
+		padding: "2px 10px",
+		textTransform: "capitalize",
+	};
 
-      <List sx={{ paddingTop: "40px" }}>
-        <ListItem
-          sx={{
-            fontSize: "1.5rem",
-            fontWeight: "500",
-            fontFamily: "Arbutus Slab",
-            color: "var(--purple-font-300)",
-          }}
-        >
-          Classes
-        </ListItem>
+	return (
+		<Drawer
+			className="bg-secondary-bg"
+			variant="persistent"
+			anchor="left"
+			open={open}
+			sx={{
+				padding: "10px 30px",
+				width: drawerWidth,
+				"& .MuiDrawer-paper": {
+					width: drawerWidth,
+				},
+			}}
+		>
+			<Paper></Paper>
+			<Stack direction="row" justifyContent="space-between">
+				<ListItem
+					sx={{ fontSize: "1.15rem", color: "var(--blue-font-400)" }}
+				>
+					<ImageList>
+						<ImageListItem sx={{ width: 30 }} cols={1}>
+							<img src="img/upload-icon.png" alt="" />
+						</ImageListItem>
+					</ImageList>
+					Notix
+				</ListItem>
+				<Button
+					sx={{
+						fontSize: "1rem",
+						textAlign: "end",
+						marginRight: "5px",
+						color: "var(--white-font-500)",
+					}}
+					onClick={toggleDrawer}
+				>
+					x
+				</Button>
+			</Stack>
 
-        <ListItem>
-          <Button sx={buttonStyle}>
-            <ListItemText primary="Class 1" />
-          </Button>
-        </ListItem>
+			<List sx={{ paddingTop: "40px" }}>
+				<ListItem
+					sx={{
+						fontSize: "1.5rem",
+						fontWeight: "500",
+						fontFamily: "Arbutus Slab",
+						color: "var(--purple-font-300)",
+					}}
+				>
+					Classes
+				</ListItem>
 
-        <ListItem>
-          <Button sx={buttonStyle}>
-            <ListItemText primary="Class 2" />
-          </Button>
-        </ListItem>
+				<ListItem>
+					<Button sx={buttonStyle}>
+						<ListItemText primary="Class 1" />
+					</Button>
+				</ListItem>
 
-        <ListItem>
-          <Button sx={buttonStyle}>
-            <ListItemText primary="Class 3" />
-          </Button>
-        </ListItem>
-      </List>
+				<ListItem>
+					<Button sx={buttonStyle}>
+						<ListItemText primary="Class 2" />
+					</Button>
+				</ListItem>
 
-      <List sx={{ paddingTop: "20px" }}>
-        <ListItem
-          sx={{
-            fontSize: "1.5rem",
-            fontWeight: "500",
-            fontFamily: "Arbutus Slab",
-            color: "var(--purple-font-300)",
-          }}
-        >
-          Notebooks
-        </ListItem>
+				<ListItem>
+					<Button sx={buttonStyle}>
+						<ListItemText primary="Class 3" />
+					</Button>
+				</ListItem>
+			</List>
 
-        <ListItem>
-          <Button sx={buttonStyle}>
-            <ListItemText primary="Notebook 1" />
-          </Button>
-        </ListItem>
+			<List sx={{ paddingTop: "20px" }}>
+				<ListItem
+					sx={{
+						fontSize: "1.5rem",
+						fontWeight: "500",
+						fontFamily: "Arbutus Slab",
+						color: "var(--purple-font-300)",
+					}}
+				>
+					Notebooks
+				</ListItem>
 
-        <ListItem>
-          <Button sx={buttonStyle}>
-            <ListItemText primary="Notebook 2" />
-          </Button>
-        </ListItem>
+				<ListItem>
+					<Button sx={buttonStyle}>
+						<ListItemText primary="Notebook 1" />
+					</Button>
+				</ListItem>
 
-        <ListItem>
-          <Button sx={buttonStyle}>
-            <ListItemText primary="Notebook 3" />
-          </Button>
-        </ListItem>
-      </List>
-    </Drawer>
-  );
+				<ListItem>
+					<Button sx={buttonStyle}>
+						<ListItemText primary="Notebook 2" />
+					</Button>
+				</ListItem>
+
+				<ListItem>
+					<Button sx={buttonStyle}>
+						<ListItemText primary="Notebook 3" />
+					</Button>
+				</ListItem>
+			</List>
+		</Drawer>
+	);
 }
 
 export default SideNav;
