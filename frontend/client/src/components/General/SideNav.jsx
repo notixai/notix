@@ -49,14 +49,13 @@ function SideNav({ container }) {
 								}
 								className="z-10 h-screen w-full overflow-hidden text-ellipsis bg-primary-theme"
 							>
-								<nav className="flex flex-col gap-4">
+								<nav className="flex flex-col gap-4 overflow-hidden whitespace-nowrap">
 									<Dialog.Title>Notix</Dialog.Title>
 									<Dialog.Close>
 										<button className="hover:cursor-pointer">
 											<Cross1Icon />
 										</button>
 									</Dialog.Close>
-
 									<SideNavLinks navOptions={navOptions} />
 								</nav>
 							</Dialog.Content>
