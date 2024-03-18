@@ -8,7 +8,6 @@ import React from "react";
 // import { ImageList, ImageListItem, Stack } from "@mui/material";
 // import { useDrawer } from "../Contexts/DrawerContext";
 // import "../../../src/App.css";
-
 import * as Dialog from "@radix-ui/react-dialog";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import { useState } from "react";
@@ -52,13 +51,13 @@ function SideNav({ container }) {
 								onInteractOutside={(event) =>
 									event.preventDefault()
 								}
-								className="z-10 h-screen w-full overflow-hidden text-ellipsis bg-primary-theme"
+								className="z-10 h-screen w-full overflow-hidden text-ellipsis bg-secondary-bg"
 							>
 								<nav className="flex flex-col gap-4 overflow-hidden whitespace-nowrap">
-									<Dialog.Title>Notix</Dialog.Title>
-									<Dialog.Close className="hover:cursor-pointer">
+									<Dialog.Close className="mr-2 mt-2 w-auto self-end hover:cursor-pointer">
 										<Cross1Icon />
 									</Dialog.Close>
+									<Dialog.Title>Navigate</Dialog.Title>
 									<SideNavLinks navOptions={navOptions} />
 								</nav>
 							</Dialog.Content>
@@ -72,14 +71,12 @@ function SideNav({ container }) {
 function SideNavLinks({ navOptions }) {
 	return navOptions.map((option) => {
 		return (
-			<div key={option.id}>
-				<h2 className="text-left text-xl">{option.heading}</h2>
-				<ol className="pl-1">
-					{option.links.map((link) => (
-						<li key={link.id}>{link["link"]}</li>
-					))}
-				</ol>
-			</div>
+			<ol className="pl-1">
+				<h2>{option.heading}</h2>
+				{option.links.map((link) => (
+					<li key={link.id}>{link["link"]}</li>
+				))}
+			</ol>
 		);
 	});
 }
