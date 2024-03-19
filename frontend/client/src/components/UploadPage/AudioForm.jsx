@@ -82,7 +82,7 @@ export default function AudioForm({ tags }) {
 			encType="multipart/form-data"
 		>
 			<label
-				className="flex w-full flex-col items-center justify-center border-2 border-dashed border-secondary-theme bg-secondary-bg py-10 hover:cursor-pointer"
+				className="flex w-full flex-col items-center justify-center border-2 border-dashed border-secondary-theme bg-secondary-bg  pt-20 hover:cursor-pointer"
 				htmlFor="audio-upload"
 			>
 				{curFile ? (
@@ -155,7 +155,7 @@ function FileData({ curFile }) {
 					Audio Name: {curFile.name}
 				</span>
 			</div>
-			<div className="flex w-full justify-between px-5 py-1 text-white-font-500">
+			<div className="flex w-full items-end justify-between px-5 py-1 text-white-font-500">
 				<span>Size: {calculateSize(curFile.size)}</span>
 				<span>Type: {curFile.type}</span>
 			</div>
@@ -173,7 +173,7 @@ function DefaultAudioLabel() {
 			></img>
 			<h2 className="text-blue-font-300">Upload Audio</h2>
 			<h3 className="text-purple-font-400">wav,mp3</h3>
-			<h4 className="text-purple-font-500">Max Size: 500Mbs</h4>
+			<h4 className="pb-2 text-purple-font-500">Max Size: 500Mbs</h4>
 		</>
 	);
 }
