@@ -1,0 +1,39 @@
+services:
+  server:
+    build: ./server
+    container_name: backend
+    networks:
+      - notixai_network
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb
+    restart: always
+    volumes:
+      - ./server:/app
+    command: ["npm", "run", "start"]
+
+  mongodb:
+    image: mongo:8.0
+    networks:
+      - notixai_network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+      - mongodb-log:/var/log/mongodb/
+
+volumes:
+  mongo-data:
+    driver: local
+    name: mongo-data
+  mongodb-log:
+    driver: local
+    name: mongo-log
+
+networks:
+  notixai_network:
+    driver: bridge
