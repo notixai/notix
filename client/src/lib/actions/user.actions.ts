@@ -1,11 +1,11 @@
-import User from "../models/user.model";
+"use server";
 
-import { connectToDatabase } from "../db";
+import { connectToDatabase } from "../mongoose";
+import User from "../models/user.model";
 
 export async function fetchUser(userId: string) {
   try {
-    connectToDatabase();
-
+    await connectToDatabase();
     return await User.findOne({ id: userId });
   } catch (error: any) {
     throw new Error(`Failed to fetch user: ${error.message}`);
@@ -14,7 +14,7 @@ export async function fetchUser(userId: string) {
 
 export async function fetchUsers() {
   try {
-    connectToDatabase();
+    await connectToDatabase();
 
     return await User.find({});
   } catch (error: any) {
@@ -38,25 +38,19 @@ export async function updateUser({
   image,
 }: Params): Promise<void> {
   try {
-    connectToDatabase();
+    await connectToDatabase();
 
-    console.log("userId", userId);
-    console.log("bio", bio);
-    console.log("name", name);
-    console.log("username", username);
-    console.log("image", image);
-
-    // await User.findOneAndUpdate(
-    //   { id: userId },
-    //   {
-    //     username: username.toLowerCase(),
-    //     name,
-    //     bio,
-    //     image,
-    //     onboarded: true,
-    //   },
-    //   { upsert: true }
-    // );
+    await User.findOneAndUpdate(
+      { id: userId },
+      {
+        username: username.toLowerCase(),
+        name,
+        bio,
+        image,
+        onboarded: true,
+      },
+      { upsert: true }
+    );
   } catch (error: any) {
     throw new Error(`Failed to create/update user: ${error.message}`);
   }

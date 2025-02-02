@@ -1,21 +1,25 @@
 services:
-  backend:
-    build:
-      context: ./
-      target: backend-dev
-    ports:
-      - 5173:5173
-    environment:
-      MONGODB_URI: mongodb://root:password@mongodb:27017/
-      PORT: 5173
-    depends_on:
-      - mongodb
-    restart: always
+  # backend:
+  #   build:
+  #     context: ./
+  #     target: backend-dev
+  #   ports:
+  #     - 5173:5173
+  #   environment:
+  #     MONGODB_URI: mongodb://root:password@mongodb:27017/
+  #     PORT: 5173
+  #   depends_on:
+  #     - mongodb
+  #   restart: always
 
   client:
     build:
       context: ./
       target: client-dev
+    env_file:
+      - client/.env
+    environment:
+      MONGODB_URI: mongodb://root:password@mongodb:27017/
     ports:
       - 3000:3000
 
